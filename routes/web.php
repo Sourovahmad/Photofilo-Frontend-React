@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\authenticationController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::view('single', 'index');
+
+Route::post('register', [authenticationController::class, 'register_post'])->name('register_post');
