@@ -57,6 +57,8 @@
 
                         <form action="{{ route('register_post') }}" method="POST">
                             @csrf
+
+
                             <div class="pb-5">
                                 <label class="label" for="email">E-Mail Address  <span class="text-danger"> * </span></label><br />
                                 <input class="input form-control" type="email" name="email" required id="email" autofill="off">

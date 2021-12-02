@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\authenticationController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,8 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 // Public Routes
 Route::get('items', [ItemController::class, 'index']);
+Route::post('apiRegister', [authenticationController::class, 'api_register']);
+
+
+
 
 
 //Protected Routes

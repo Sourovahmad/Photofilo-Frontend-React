@@ -1,21 +1,12 @@
-import  Axios  from "axios";
-import { useEffect } from "react";
+
+import Login from "./components/Auth/Login";
 
 function App() {
 
-  useEffect(() => {
-    Axios.get('http://127.0.0.1:8000/api/items')
-  .then(function (response) {
-    console.log(response.status);
-  });
-  }, []);
-
-
-
-
+  
   return (
     <div >
-      <h2> helll o MFS</h2>
+     <Login></Login>
     </div>
   );
 }
