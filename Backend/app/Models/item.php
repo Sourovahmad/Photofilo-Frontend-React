@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class item extends Model
 {
     use HasFactory;
+
+    public function images()
+    {
+       return $this->hasMany( image::class, 'image_id', 'id')->get();
+    }
 }

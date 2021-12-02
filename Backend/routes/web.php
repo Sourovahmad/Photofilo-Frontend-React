@@ -17,9 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
 
 
 
@@ -27,13 +24,14 @@ Route::post('register', [authenticationController::class, 'register_post'])->nam
 Route::get('register', [authenticationController::class, 'registerGet'])->name('registerGet');
 Route::get('login', [authenticationController::class, 'loginGet'])->name('login');
 Route::post('login', [authenticationController::class, 'login_post'])->name('login_post');
-Route::get('signout',[authenticationController::class, 'signout'])->name('signout');
+Route::get('signout',[authenticationController::class, 'signout'])->name('logout');
+
+
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('profile', function()
-    {
-       return view('index');
+    Route::get('/', function () {
+        return view('index');
+    })->name('home');
 
-    })->name('prfile');
 });

@@ -17,7 +17,10 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('item_id');
             $table->string('thumbnail');
-            $table->string('image_full');
+            $table->string('image_full')->nullable();
+            $table->string('grid_image_one')->nullable();
+            $table->string('grid_image_two')->nullable();
+            $table->longText('text');
             $table->timestamps();
         });
     }

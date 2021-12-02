@@ -15,7 +15,10 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        // $items = item::with('images')->orderBy('id','desc')->get();
+        // return $items;
+
+        return item::all();
     }
 
     /**
