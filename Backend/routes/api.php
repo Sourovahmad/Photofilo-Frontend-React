@@ -24,8 +24,10 @@ Route::post('apiRegister', [authenticationController::class, 'api_register']);
 Route::post('apiLogin', [authenticationController::class, 'api_login']);
 
 
-
 //Protected Routes
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('apiLogout', [authenticationController::class, 'api_logout']);
+    Route::get('checkUser', function(){
+        return response(200);
+    });
 });

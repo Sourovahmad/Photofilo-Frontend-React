@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Authentication.css";
+import CheckAuth from "../authChecker/CheckAuth";
 
 const Login = () => {
 
-
+   const authStaus = CheckAuth();
+    console.log(authStaus);
     const Api_route = 'http://127.0.0.1:8000/api/';
-
-    const sessoinData =  sessionStorage.getItem("tokenss");
 
     const [loginToggle, setLoginToggle] = useState(true);
     const [loginError, setloginError] = useState(false);
