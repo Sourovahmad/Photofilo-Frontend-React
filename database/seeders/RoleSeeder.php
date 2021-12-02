@@ -32,18 +32,21 @@ class RoleSeeder extends Seeder
                 "email" =>  "superadmin@gmail.com",
                 "password" =>  bcrypt(1234),
                 "role_id" =>  1,
+                "birth_date" => '01-01-2000'
             ],
             [
                 "name" =>  "Admin",
                 "email" =>  "admin@gmail.com",
                 "password" =>  bcrypt(1234),
                 "role_id" =>  2,
+                "birth_date" => '01-01-2000'
             ],
             [
                 "name" =>  "user",
                 "email" =>  "user@gmail.com",
                 "password" =>  bcrypt(1234),
                 "role_id" =>  3,
+                "birth_date" => '01-01-2000'
             ],
         ]);
     }

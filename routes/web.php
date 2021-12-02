@@ -23,6 +23,16 @@ Route::get('/', function () {
 
 
 
-Route::view('single', 'index');
-
 Route::post('register', [authenticationController::class, 'register_post'])->name('register_post');
+Route::get('register', [authenticationController::class, 'registerGet'])->name('registerGet');
+Route::get('login', [authenticationController::class, 'loginGet'])->name('login');
+Route::post('login', [authenticationController::class, 'login_post'])->name('login_post');
+Route::get('signout',[authenticationController::class, 'signout'])->name('signout');
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('profile', function()
+    {
+       return 'this is logged in page';
+    })->name('prfile');
+});

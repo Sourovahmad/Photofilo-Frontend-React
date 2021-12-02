@@ -27,6 +27,7 @@ class authenticationRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+            'country' => 'required',
             'day' => 'required',
             'month' => 'required',
             'year' => 'required'

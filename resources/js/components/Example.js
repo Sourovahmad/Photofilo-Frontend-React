@@ -5,9 +5,13 @@ import Router from './router/Router';
 
 function Example() {
     return (
+
+        <div>
+        <a href="/profile"> Profile</a>
         <BrowserRouter>
            <Router></Router>
         </BrowserRouter>
+        </div>
     );
 }
 
