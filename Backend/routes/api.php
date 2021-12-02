@@ -21,12 +21,11 @@ use Illuminate\Support\Facades\Route;
 // Public Routes
 Route::get('items', [ItemController::class, 'index']);
 Route::post('apiRegister', [authenticationController::class, 'api_register']);
-
-
+Route::post('apiLogin', [authenticationController::class, 'api_login']);
 
 
 
 //Protected Routes
 Route::middleware(['auth:sanctum'])->group(function () {
-
+    Route::post('apiLogout', [authenticationController::class, 'api_logout']);
 });

@@ -3,7 +3,60 @@ import axios from "axios";
 import "./Authentication.css";
 
 const Login = () => {
-  const [loginToggle, setLoginToggle] = useState(true);
+
+
+    const Api_route = 'http://127.0.0.1:8000/api/';
+
+    const sessoinData =  sessionStorage.getItem("tokenss");
+
+    const [loginToggle, setLoginToggle] = useState(true);
+    const [loginError, setloginError] = useState(false);
+    
+
+    //login Post Section
+
+    const [login_email, setlogin_email] = useState("");
+    const [login_password, setlogin_password] = useState("");
+
+    const handleLogin = (e) => {
+        const inputName = e.target.name;
+        const inputValue = e.target.value;
+        if(inputName === 'email'){
+            setlogin_email(inputValue);
+        } else {
+            setlogin_password(inputValue);
+        }
+    }
+    
+    const loginData = {
+        email: login_email,
+        password: login_password
+    }
+
+    const loginHandle = async (e) => {
+        e.preventDefault();
+        await axios
+      .post( Api_route + "apiLogin", loginData)
+      .then((response)=>{
+
+        console.log(response);
+        if(response.status === 200){
+            window.sessionStorage.setItem("token", response.data.token);
+            setsuccessMessage(true);
+
+            setlogin_email('');
+            setlogin_password('')
+        } else if(response.status === 401){
+
+        }
+      })
+      .catch((error)=>{
+        setloginError(true)
+            console.log(error);
+      });
+    }
+
+
 
   // Register post section
 
@@ -30,7 +83,6 @@ const Login = () => {
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(name);
 
     if (name === "name") {
       setname(value);
@@ -51,7 +103,6 @@ const Login = () => {
     }
   };
 
-  console.log(formData);
 
   const [errorMessage, seterrorMessage] = useState(false);
   const [successMessage, setsuccessMessage] = useState(false);
@@ -59,7 +110,7 @@ const Login = () => {
   const savePost = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://127.0.0.1:8000/api/apiRegister", formData)
+      .post( Api_route + "apiRegister", formData)
       .then((response) => {
         if(response.status === 201){
             window.sessionStorage.setItem("token", response.data.token);
@@ -657,7 +708,22 @@ const Login = () => {
                   </form>
                 ) : (
                   <div classNameName="login_inner pb-5 mb-5">
-                    <form action="">
+                    <form onSubmit={(e) => loginHandle(e)}>
+
+
+                    {
+                        loginError === true ?
+
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <p> Credentials Does Not Match </p>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                            : ""
+                            
+                    }
+
+
                       <div className="pb-2">
                         <label className="label" for="">
                           E-Mail Address
@@ -667,6 +733,9 @@ const Login = () => {
                           className="input form-control"
                           type="email"
                           name="email"
+                          value={login_email}
+                          onChange={(e) => handleLogin(e)}
+                          required
                         />
                       </div>
 
@@ -680,11 +749,15 @@ const Login = () => {
                           type="password"
                           name="password"
                           id="password"
+                          value={login_password}
+                          onChange={(e) => handleLogin(e)}
+                          required
+
                         />
                       </div>
 
                       <div className="text-end">
-                        <button className="loginBtn mt-5">Log In</button>
+                        <button type="submit" className="loginBtn mt-5">Log In</button>
                       </div>
                     </form>
 

@@ -6,6 +6,7 @@ use App\Http\Requests\authenticationRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class authenticationController extends Controller
 {
@@ -37,6 +38,40 @@ class authenticationController extends Controller
         ];
         return response($response, 201);
     }
+
+    public function api_logout(Request $request)
+    {
+        auth()->user()->tokens()->delete();
+        return [
+            "message" => "loged out"
+        ];
+    }
+
+    public function api_login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if(!$user || !Hash::check($request->password, $user->password)) {
+            return response([
+                "message" => "Credentials Does Not Match"
+            ], 401);
+        }
+
+        $token = $user->createToken('myapitoken')->plainTextToken;
+        $response = [
+            'user' => $user,
+            'token' => $token,
+        ];
+        return response($response, 200);
+    }
+
+
+
 
 
 
