@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
 
@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('profile', function()
     {
-       return 'this is logged in page';
+       return view('index');
+
     })->name('prfile');
 });
