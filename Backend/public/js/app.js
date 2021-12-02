@@ -9,7 +9,7 @@
 
 __webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
 
-__webpack_require__(/*! ./components/auth/Profile */ "./resources/js/components/auth/Profile.jsx");
+__webpack_require__(/*! ./components/auth/Profile */ "./resources/js/components/auth/Profile.js");
 
 /***/ }),
 
@@ -55,10 +55,10 @@ if (document.getElementById('indexPage')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/Profile.jsx":
-/*!**************************************************!*\
-  !*** ./resources/js/components/auth/Profile.jsx ***!
-  \**************************************************/
+/***/ "./resources/js/components/auth/Profile.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/auth/Profile.js ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -87,10 +87,10 @@ if (document.getElementById('profile')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/profile.jsx":
-/*!**************************************************!*\
-  !*** ./resources/js/components/auth/profile.jsx ***!
-  \**************************************************/
+/***/ "./resources/js/components/auth/profile.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/auth/profile.js ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -156,10 +156,10 @@ var Notfound = function Notfound() {
 
 /***/ }),
 
-/***/ "./resources/js/components/pages/home/Home.jsx":
-/*!*****************************************************!*\
-  !*** ./resources/js/components/pages/home/Home.jsx ***!
-  \*****************************************************/
+/***/ "./resources/js/components/pages/home/Home.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/pages/home/Home.js ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -197,9 +197,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
-/* harmony import */ var _auth_profile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth/profile */ "./resources/js/components/auth/profile.jsx");
+/* harmony import */ var _auth_profile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth/profile */ "./resources/js/components/auth/profile.js");
 /* harmony import */ var _error_Notfound__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../error/Notfound */ "./resources/js/components/error/Notfound.jsx");
-/* harmony import */ var _pages_home_Home__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/home/Home */ "./resources/js/components/pages/home/Home.jsx");
+/* harmony import */ var _pages_home_Home__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/home/Home */ "./resources/js/components/pages/home/Home.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
