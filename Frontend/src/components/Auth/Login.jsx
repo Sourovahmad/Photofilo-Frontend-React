@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Authentication.css";
-import CheckAuth from "../authChecker/CheckAuth";
 
 const Login = () => {
 
-   const authStaus = CheckAuth();
-    console.log(authStaus);
-    const Api_route = 'http://127.0.0.1:8000/api/';
+  const ApiLink = process.env.REACT_APP_API_TO;
 
     const [loginToggle, setLoginToggle] = useState(true);
     const [loginError, setloginError] = useState(false);
@@ -36,7 +33,7 @@ const Login = () => {
     const loginHandle = async (e) => {
         e.preventDefault();
         await axios
-      .post( Api_route + "apiLogin", loginData)
+      .post( ApiLink + "apiLogin", loginData)
       .then((response)=>{
 
         console.log(response);
@@ -110,7 +107,7 @@ const Login = () => {
   const savePost = async (e) => {
     e.preventDefault();
     await axios
-      .post( Api_route + "apiRegister", formData)
+      .post( ApiLink + "apiRegister", formData)
       .then((response) => {
         if(response.status === 201){
             window.sessionStorage.setItem("token", response.data.token);
