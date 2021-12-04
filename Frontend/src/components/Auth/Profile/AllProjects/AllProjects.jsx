@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
+
 import './Allprojects.css';
 import profile from '../../../../Images/NewUser/Profile.png.webp'
 import project1 from '../../../../Images/NewUser/aa4.png';
+import { Link } from 'react-router-dom';
 
 
 const AllProjects = () => {
-    
-    const [createProject, setCreateProject] = useState(false);
-    const handleCreateProject = (value) => {
-        value && setCreateProject(value);
-    }
-
+ 
 
     return (
     <div id='allProject_area'>
@@ -37,13 +33,15 @@ const AllProjects = () => {
 
                             <div className='d-md-flex flex-md-wrap d-lg-flex flex-lg-wrap projectList'>
                                 
-                                <div className='createProject' onClick={() => handleCreateProject(true)}>
-                                    <div className='addIcon'>
-                                        <i class="fas fa-plus-circle"></i>
+                                <Link to="/create" style={{ textDecoration:"none" }}> 
+                                    <div className='createProject'>
+                                        <div className='addIcon'>
+                                            <i class="fas fa-plus-circle"></i>
+                                        </div>
+                                        <button className='btn d-block'>Create a Project</button>
+                                        <p>Get Feedback and show your Skills to everyone.</p>
                                     </div>
-                                    <button className='btn d-block'>Create a Project</button>
-                                    <p>Get Feedback and show your Skills to everyone.</p>
-                                </div>
+                                </Link>
 
                                 <div className='projectDemo'>
                                     <img src={project1} className='img-fluid' />

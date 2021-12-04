@@ -1,16 +1,15 @@
-import React from 'react';
+import React from "react";
 import { useEffect, useState } from "react";
 import { AppendElement } from "../../../BuildingElement/BuildingUtility";
-import InsertMediaBar from '../../InsertMediaBar/InsertMediaBar';
-import CreatePageSidebar from './CreatePageSidebar/CreatePageSidebar';
-import TextWriterBox from './TextWriterBox/TextWriterBox';
-import placeholder_image from '../../../../Images/image-uploader-thumb.svg';
-import Navbar from '../../Navbar/Navbar';
-import Footer from '../../Footer/Footer';
-
+import InsertMediaBar from "../../InsertMediaBar/InsertMediaBar";
+import CreatePageSidebar from "./CreatePageSidebar/CreatePageSidebar";
+import TextWriterBox from "./TextWriterBox/TextWriterBox";
+import placeholder_image from "../../../../Images/image-uploader-thumb.svg";
+import Navbar from "../../Navbar/Navbar";
+import Footer from "../../Footer/Footer";
 
 const Create = () => {
-
+    
     const [isInsertMediaBar, setIsInsertMediaBar] = useState(null)
     const [isTextBar, setIsTextBar] = useState(false)
 
@@ -26,14 +25,15 @@ const Create = () => {
         console.log(appender.randomIdGenerator(15));
     });
 
+   
 
     return (
-        <> 
-        <Navbar /> 
-    <section id="create-page-dashboard">
-        <div className="sidebar">
-            <CreatePageSidebar setIsTextBar={setIsTextBar} setIsInsertMediaBar={setIsInsertMediaBar} />
-        </div>
+        <>
+    <Navbar />
+        <section id="create-page-dashboard">
+            <div className="sidebar">
+                <CreatePageSidebar setIsTextBar={setIsTextBar} setIsInsertMediaBar={setIsInsertMediaBar} />
+            </div>
             <div className="content">
                 <div className="content__container">
                     <div className="project-wrapper">
@@ -62,8 +62,6 @@ const Create = () => {
         </section>
         <Footer />
         </>
-
     );
 };
-
 export default Create;

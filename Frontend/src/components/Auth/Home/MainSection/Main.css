@@ -1,0 +1,148 @@
+#main_area {
+    background: #fff;
+}
+#main_area .navArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#main_area .navArea img {
+    width: 55px;
+}
+#main_area .navArea nav {
+    text-align: right;
+}
+#main_area .navArea nav ul {
+    display: flex;
+    list-style: none;
+    margin-right: -47px;
+}
+#main_area .navArea nav ul a {
+    color: #010101;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin: 0 15px;
+}
+#main_area .navArea nav ul button {
+    color: #010101;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin: 0 15px;
+    border-radius: 0;
+}
+#main_area .navArea nav ul button:focus {
+    box-shadow: none;
+}
+#main_area .cloud {
+    width: 250px;
+    margin-left: 350px;
+}
+#main_area .mainInner {
+    margin-top: -35px;
+}
+#main_area .mainInner .mainInfo p {
+    font-size: 12px;
+    line-height: 13px;
+    font-weight: 300;
+    color: rgb(135, 135, 135);
+    letter-spacing: 3px;
+    font-family: Roboto;
+    margin: 0px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+}
+#main_area .mainInner .mainInfo h1 {
+    white-space: nowrap;
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: 800;
+    color: rgb(1, 1, 1);
+    letter-spacing: 1px;
+    font-family: Montserrat;
+    padding-bottom: 30px;
+}
+#main_area .mainInner .mainInfo a {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: .4em;
+    font-family: Roboto,sans-serif;
+    text-transform: uppercase;
+    color: #010101;
+    background-color: transparent;
+    border: 1px solid #010101;
+    text-decoration: none;
+    transition: color .2s ease-in-out,background-color .2s ease-in-out,border-color .2s ease-in-out;
+    padding: 16px 30px;
+    width: auto;
+    outline: 0;
+    line-height: 19px
+}
+#main_area .mainInner .mainInfo a:hover {
+    background: #010101;
+    color: #fff;
+}
+#main_area .mainInner .bg {
+    padding-right: 15px;
+}
+
+
+
+
+
+
+
+/* responsive code */
+@media only screen and (max-width: 600px) {
+    #main_area .mainInner {
+        width: 100%;
+        position: relative;
+        margin-bottom: 20px;
+    }
+    #main_area .mainInner {
+        margin-top: 25px;
+    }
+    #main_area .mainInner .mainInfo {
+       padding-left: 15px;
+       padding-right: 15px;
+    }
+    #main_area .mainInner .mainInfo p {
+        padding-bottom: 0;
+    }
+    #main_area .mainInner .mainInfo h1 {
+        font-size: 40px;
+        font-weight: bold;
+        padding-bottom: 10px;
+    }
+    #main_area .mainInner .bg {
+        padding-right: 0;
+        padding-top: 90px;
+    }
+    #main_area .cloud {
+        content: '';
+        position: absolute;
+        top: 190px;
+        left: 0;
+        width: 170px;
+        margin-left: 0;
+    }
+    #main_area .navArea {
+        position: relative;
+    }
+    #main_area .navArea ul {
+        padding-right: 35px;
+    }
+    #main_area .navArea .extra {
+        content: '';
+        position: absolute;
+        top: 195px;
+        left: 43px;
+    }
+}
+
+
+
+
+
+
+
+
