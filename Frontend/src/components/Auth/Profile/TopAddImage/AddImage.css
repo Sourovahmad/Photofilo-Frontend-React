@@ -1,0 +1,36 @@
+#addImage_area {
+    text-align: center;
+    background: #404040;
+    padding: 45px 0 65px;
+}
+#addImage_area .addIcon svg {
+    color: #fff;
+    font-size: 80px;
+}
+#addImage_area p {
+    font-size: 16px;
+    margin-bottom: 0;
+    padding: 3px 0 5px;
+    color: #fff;
+}
+#addImage_area h6 {
+    font-size: 17px;
+    color: #fff;
+}
+
+.arrowIconTopSection{
+    font-size: 30px;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+

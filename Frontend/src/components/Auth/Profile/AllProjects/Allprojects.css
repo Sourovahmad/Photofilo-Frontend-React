@@ -1,0 +1,208 @@
+#allProject_area {
+    background: #f7f7f7;
+    padding: 100px 0;
+}
+#allProject_area .projectInner nav {
+    padding-bottom: 70px;
+}
+#allProject_area .projectInner nav .active {
+    background: #000;
+    color: #fff;
+}
+#allProject_area .projectInner nav button {
+    color: #888888;
+    margin-right: 20px;
+    transition: all .3s ease;
+    border-radius: 20px;
+}
+#allProject_area .projectInner nav button:hover {
+    background: #000;
+    color: #fff;
+}
+#allProject_area .projectInner .projectList {
+    gap: 70px;
+}
+#allProject_area .projectInner .projectList .emptyProject {
+    background: linear-gradient(to bottom, #fff, #f7f7f7);
+    border-radius: 6px;
+    width: 280px;
+    height: 290px;
+    border: 1px solid #f7f7f7;
+}
+#allProject_area .projectInner .projectList .projectDemo img {
+    width: 290px;
+    height: 280px;
+}
+#allProject_area .projectInner .projectList .projectDemo .info {
+    padding-left: 10px;
+}
+#allProject_area .projectInner .projectList .projectDemo p {
+    margin: 0;
+}
+#allProject_area .projectInner .projectList .projectDemo .info .view p {
+    color: #888888;
+    font-size: 13px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+#allProject_area .projectInner .projectList .createProject {
+    text-align: center;
+    background: #fff;
+    border: 1px dashed #c7c7c7;
+    padding: 50px 25px;
+    border-radius: 6px;
+    width: 290px;
+    height: 300px;
+    cursor: pointer;
+}
+#allProject_area .projectInner .projectList .createProject .addIcon {
+    background: #888888;
+    display: inline-block;
+    padding: 20px 25px;
+    border-radius: 50%;
+}
+#allProject_area .projectInner .projectList .createProject .addIcon {
+    color: #fff;
+}
+#allProject_area .projectInner .projectList .createProject button {
+    border: 1px solid #888888;
+    margin: 23px auto 35px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+#allProject_area .projectInner .projectList .createProject p {
+    font-size: 15px;
+    color: #888888;
+}
+
+#allProject_area .userProfile {
+    border: 1px solid #888888;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    margin-top: -215px;
+}
+#allProject_area .userProfile .profile img {
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+}
+#allProject_area .userProfile .profile .pIcon {
+    content: '';
+    position: absolute;
+    top: 25%;
+    right: 30%;
+    background: #fff;
+    color: #007880;
+    display: inline-block;
+    border-radius: 50%;
+}
+#allProject_area .userProfile .profile .pIcon svg {
+    font-size: 30px;  
+}
+#allProject_area .userProfile h5 {
+    color: #888888;
+    font-size: 18px;
+    padding: 18px 0 7px;
+}
+#allProject_area .userProfile p {
+    color: #888888;
+    font-size: 15px;
+    text-align: left;
+}
+#allProject_area .userProfile .editProfile {
+    background: #007880;
+    color: #fff;
+    border-radius: 20px;
+    padding: 3px 35px 5px;
+    font-size: 16px;
+    margin-top: 25px;
+    margin-bottom: 51px;
+}
+#allProject_area .userProfile .editProfile svg {
+    margin-right: 7px;
+    font-size: 14px;
+}
+#allProject_area .userProfile .followers {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+#allProject_area .userProfile .followers p {
+    color: #000;
+    font-size: 16px;
+    margin: 0;
+    text-align: left;
+}
+
+
+
+
+
+
+/* responsive code */
+@media only screen and (max-width: 600px) {
+    .navbar {
+        display: block;
+    }
+    .navbar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    #allProject_area .projectInner .projectList {
+        gap: 0px;
+    }
+    #allProject_area .projectInner nav {
+        padding-bottom: 30px;
+    }
+    #allProject_area .projectInner nav ul li {
+        margin-bottom: 7px;
+    }
+    #allProject_area .projectInner .projectList .emptyProject {
+        width: 355px;
+        height: 290px;
+        margin: 0 15px 15px;
+    }
+    #allProject_area .projectInner .projectList .createProject {
+        width: auto;
+        height: auto;
+        margin: 0 15px 15px;
+    }
+    #allProject_area .userProfile {
+        margin: 30px 15px 0;
+    }
+    #allProject_area .projectInner .projectList .projectDemo {
+        margin: 0 15px 15px;
+    }
+    #allProject_area .projectInner .projectList .projectDemo img {
+        width: auto;
+        height: auto;
+    }
+    #allProject_area .projectInner .projectList .projectDemo .info {
+        padding-left: 10px;
+    }
+    #allProject_area .projectInner .projectList .projectDemo p {
+        margin: 0;
+    }
+    #allProject_area .projectInner .projectList .projectDemo .info .view p {
+        color: #888888;
+        font-size: 13px;
+        padding-right: 10px;
+        cursor: pointer;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
