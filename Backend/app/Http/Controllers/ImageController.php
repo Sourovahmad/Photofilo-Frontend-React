@@ -6,7 +6,7 @@ use App\Models\image;
 use App\Http\Requests\StoreimageRequest;
 use App\Http\Requests\UpdateimageRequest;
 use Illuminate\Http\Request;
-
+use Image as InterventionImage;
 class ImageController extends Controller
 {
     /**

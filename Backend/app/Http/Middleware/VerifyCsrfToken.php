@@ -13,5 +13,9 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'api/thumbnail-upload',
+        'api/apiRegister',
+        'api/apiLogin',
+        'api/project-save',
+        
     ];
 }

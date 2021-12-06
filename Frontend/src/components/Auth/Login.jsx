@@ -39,10 +39,12 @@ const Login = () => {
         console.log(response);
         if(response.status === 200){
             window.sessionStorage.setItem("token", response.data.token);
+            window.sessionStorage.setItem("user_id", response.data.user.id);
             setsuccessMessage(true);
-
             setlogin_email('');
             setlogin_password('')
+            window.location.href= "/profile";
+
         } else if(response.status === 401){
 
         }
@@ -104,7 +106,7 @@ const Login = () => {
   const [errorMessage, seterrorMessage] = useState(false);
   const [successMessage, setsuccessMessage] = useState(false);
 
-  const savePost = async (e) => {
+  const registerUser = async (e) => {
     e.preventDefault();
     await axios
       .post( ApiLink + "apiRegister", formData)
@@ -168,7 +170,7 @@ const Login = () => {
                 </div>
 
                 {loginToggle === false ? (
-                  <form onSubmit={(e) => savePost(e)}>
+                  <form onSubmit={(e) => registerUser(e)}>
                     {/* <form id="myForm">  */}
                     <div className="pb-5">
 

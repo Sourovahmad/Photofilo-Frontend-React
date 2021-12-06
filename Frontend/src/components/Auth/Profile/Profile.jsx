@@ -5,7 +5,7 @@ import '../../../Style/Style.css';
 import Footer from '../Footer/Footer';
 import AllProjects from './AllProjects/AllProjects';
 
-const Profile = () => {
+const Profile = ({profileInfo}) => {
     return (
         <div>
             <Navbar /> 

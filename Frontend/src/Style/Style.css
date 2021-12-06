@@ -206,13 +206,11 @@ body {
 
 .image-uploader-thumb {
   width: 100%;
-  padding: 10%;
-  border: 1px dashed #8b8b8b;
   border-radius: 5px;
 }
 
 .image-uploader-thumb img {
-  width: 80%;
+  width: 100%;
   margin: auto;
   display: block;
 }

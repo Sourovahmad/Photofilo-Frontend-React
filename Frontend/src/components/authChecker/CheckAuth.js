@@ -1,6 +1,6 @@
 import  axios  from "axios";
 
-const Api_route = 'http://127.0.0.1:8000/api/';
+const Api_route = process.env.REACT_APP_API_TO;
 
 const CheckAuth = () => {
 
@@ -21,6 +21,8 @@ const CheckAuth = () => {
         ).catch((error)=>{
             return 0
         });
+    }else{
+        return
     }
 
 };
