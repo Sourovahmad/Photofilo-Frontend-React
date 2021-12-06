@@ -34,6 +34,7 @@ const Create = () => {
             <div className="sidebar">
                 <CreatePageSidebar setIsTextBar={setIsTextBar} setIsInsertMediaBar={setIsInsertMediaBar} />
             </div>
+            
             <div className="content">
                 <div className="content__container">
                     <div className="project-wrapper">

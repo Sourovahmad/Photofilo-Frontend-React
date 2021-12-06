@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\image;
 use App\Http\Requests\StoreimageRequest;
 use App\Http\Requests\UpdateimageRequest;
+use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
@@ -82,5 +83,17 @@ class ImageController extends Controller
     public function destroy(image $image)
     {
         //
+    }
+
+    public function thumbnailUpload(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $imageName = route('home') ."/" . "thumbnails/". time().'.'.$request->file->extension();  
+        $request->file->move(public_path('thumbnails'), $imageName);
+        return response()->json([
+            "imageName" => $imageName
+        ] ,200);
     }
 }

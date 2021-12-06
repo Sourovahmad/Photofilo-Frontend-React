@@ -25,13 +25,40 @@
 
     </head>
     <body>
-        <div class="jumbotron">
+
+
+        {{-- <div class="jumbotron">
             <h1 class="display-4">Hello, Admin!</h1>
             <p class="lead">this is for admin Panbel web</p>
             <hr class="my-4">
             <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
 
           </div>
+ --}}
+
+
+
+
+
+
+
+        <form action="{{ route('reciveTest') }}" method="POST">
+            @csrf
+
+            <input type="text" name="name[]" value="Foo" />
+            <input type="text" name="email[]" value="Bar" />
+            
+            <input type="text" name="password[]" value="Baz" />
+            <input type="text" name="address[]" value="Bax" />
+
+
+        <button type="submit">submit</button>
+        </form>
+
+
+
+
+
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

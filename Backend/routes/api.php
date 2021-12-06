@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\authenticationController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ItemController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +21,13 @@ use Illuminate\Support\Facades\Route;
 
 // Public Routes
 Route::get('items', [ItemController::class, 'index']);
+Route::get('categories', [CategoryController::class, 'index']);
 Route::post('apiRegister', [authenticationController::class, 'api_register']);
 Route::post('apiLogin', [authenticationController::class, 'api_login']);
+
+
+
+Route::post('thumbnail-upload', [ImageController::class, 'thumbnailUpload']);
 
 
 //Protected Routes

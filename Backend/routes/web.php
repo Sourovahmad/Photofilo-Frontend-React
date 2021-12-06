@@ -18,14 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
-
 Route::post('register', [authenticationController::class, 'register_post'])->name('register_post');
 Route::get('register', [authenticationController::class, 'registerGet'])->name('registerGet');
 Route::get('login', [authenticationController::class, 'loginGet'])->name('login');
 Route::post('login', [authenticationController::class, 'login_post'])->name('login_post');
 Route::get('signout',[authenticationController::class, 'signout'])->name('logout');
-
 
 
 Route::middleware(['auth'])->group(function () {
@@ -35,3 +32,18 @@ Route::middleware(['auth'])->group(function () {
     })->name('home');
 
 });
+
+
+
+
+
+// --------------------------- Testing Area ---------------------------
+
+Route::view('test', 'index');
+
+Route::post('reciveTest', function(Request $request){
+    return $request;
+    $allReq = $request->all();
+   return view('index', compact('allReq'));
+
+})->name('reciveTest');
