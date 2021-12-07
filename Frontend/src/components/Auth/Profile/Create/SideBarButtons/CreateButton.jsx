@@ -7,10 +7,12 @@ import axios from "axios";
 const CreateButton = () => {
 
   const sessionToken = window.sessionStorage.getItem('token');
-
+  const apiRoute = process.env.REACT_APP_API_TO;
+  const config = {
+    headers: { Authorization: `Bearer ${sessionToken}`  }
+  };
 
     // ALl States 
-  const apiRoute = process.env.REACT_APP_API_TO;
   const [categories, setCategories] = useState([]);
   const [projecTitle, setprojecTitle] = useState('');
   const [selectedThumb, setSelectedThumb] = useState('');
@@ -22,6 +24,23 @@ const CreateButton = () => {
     axios.get(apiRoute + "categories").then((res) => {
       setCategories(res.data.reverse());
     });
+
+    const currentProjectId = window.sessionStorage.getItem('current_project_id');
+    if( currentProjectId !== undefined){
+
+      axios.get(apiRoute + `project/${currentProjectId}`, config)
+      .then(res => {
+        console.log(res);
+        setprojecTitle(res.data.project.title);
+        setSelectedCategory(res.data.categories);
+        setSelectedThumb(res.data.project.thumbnail);
+        console.log(selectedCategories);
+      })
+      .catch(error=> {
+        console.log(error);
+      })
+    }
+
   }, []);
 
 
@@ -77,11 +96,16 @@ const CreateButton = () => {
         categories: selectedCategories,
         thumbnail:selectedThumb
       }
-      const config = {
-        headers: { Authorization: `Bearer ${sessionToken}`  }
-    };
+
       axios.post(apiRoute + "project-save", formData, config)
-      .then(res => console.log("saved"))
+      .then(res => {
+        console.log(res);
+        window.sessionStorage.setItem('current_project_id', res.data.project_id);
+        alert("Project Created Successfully");
+        setIsFormActive(false);
+
+      }
+        )
       .catch(error => console.log(error));
     }
   

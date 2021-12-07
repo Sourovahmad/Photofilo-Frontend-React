@@ -44,5 +44,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::post('project-save', [ProjectController::class, 'store']);
+    
 
 });
+
+Route::get('project/{id}', [ProjectController::class, 'show']);

@@ -15,8 +15,8 @@ class CreateProjectHasCategoriesTable extends Migration
     {
         Schema::create('project_has_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
         });
     }

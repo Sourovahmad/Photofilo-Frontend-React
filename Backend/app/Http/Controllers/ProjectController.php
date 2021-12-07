@@ -38,6 +38,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
         
         $request->validate([
             'title' => "required",
@@ -49,9 +50,10 @@ class ProjectController extends Controller
         $project->thumbnail = $request->thumbnail;
         $project->save();
 
-        foreach($request->categories as $category){
+        $allCategories = $request->categories;
+        foreach($allCategories as $Singlecategory){
             $projecHasCategory = new projectHasCategory;
-            $projecHasCategory->user_id = $request->user()->id;
+            $projecHasCategory->category_id = $Singlecategory['id'];
             $projecHasCategory->project_id = $project->id;
             $projecHasCategory->save();
         }
@@ -68,9 +70,20 @@ class ProjectController extends Controller
      * @param  \App\Models\project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(project $project)
+    public function show($id)
     {
-        //
+        $project = project::find($id);
+        $ProjectCategories = projectHasCategory::where('project_id', $id)->get();
+
+        $categories = array();
+         foreach($ProjectCategories as $single){
+             $singleCategory = $single->singleCategory();
+             array_push($categories, $singleCategory[0]);
+         }
+        return response()->json([
+            "project" => $project,
+            "categories" => $categories
+        ],200);
     }
 
     /**
