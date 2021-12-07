@@ -12,7 +12,7 @@ const FooterSection = () => {
                     <div className='offset-md-2 col-md-8'>
                         <div className='footerInfo'>
                             <a href="/">
-                                <img src={logo} className='img-fluid' />
+                                <img src={logo} className='img-fluid' alt="" />
                             </a>
 
                             <nav>

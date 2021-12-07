@@ -5,7 +5,7 @@ import project1 from '../../../../Images/NewUser/aa4.png';
 import { Link } from 'react-router-dom';
 
 
-const AllProjects = () => {
+const AllProjects = ({prfileData}) => {
  
 
     return (
@@ -43,8 +43,10 @@ const AllProjects = () => {
                                     </div>
                                 </Link>
 
+
+
                                 <div className='projectDemo'>
-                                    <img src={project1} className='img-fluid' />
+                                    <img src={project1} className='img-fluid' alt="" />
 
                                     <div className='info d-flex justify-content-between'>
                                         <p>Project Title 12345</p>
@@ -56,11 +58,15 @@ const AllProjects = () => {
                                     </div>
                                 </div>
 
+
+
                                 <div className='emptyProject'>
                                 </div>
 
                                 <div className='emptyProject'>
                                 </div>
+
+                                
                             </div>
                         </div>
                     </div>

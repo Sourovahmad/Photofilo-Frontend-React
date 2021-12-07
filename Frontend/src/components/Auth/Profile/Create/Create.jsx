@@ -12,7 +12,7 @@ const Create = () => {
     
     const [isInsertMediaBar, setIsInsertMediaBar] = useState(null)
     const [isTextBar, setIsTextBar] = useState(false)
-
+ // eslint-disable-next-line
     useEffect(() => {
         const defaultImage = document.querySelector(".image-uploader-area.one__layout__site.default");
         if(defaultImage){
@@ -20,9 +20,8 @@ const Create = () => {
         } else{
             setIsInsertMediaBar(true)
         }
-
+        //eslint-disable-next-line
         const appender = new AppendElement()
-        console.log(appender.randomIdGenerator(15));
     });
 
    
@@ -44,7 +43,7 @@ const Create = () => {
                                 <div className="image-uploader-area one__layout__site default">
                                     <img className="placeholder_image" src={placeholder_image} alt="" />
                                     <p className="mt-2 placeholder_text">
-                                        Drag and drop an Image, or <span className="theme-color">Browse</span>{" "}
+                                        Drag and drop an Image, or <span className="theme-color">Browseer</span>{" "}
                                     </p>
                                 </div>
                             </div>

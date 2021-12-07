@@ -9,6 +9,7 @@ import { AppendElement } from "../../BuildingElement/BuildingUtility";
 
 const GridSelectorCard = ({setIsInsertMediaBar}) => {
     const [isGridSelected, setIsGridSelected] = useState(false);
+     // eslint-disable-next-line
     const [gridCount, setGridCount] = useState(0);
 
     const gridSelection = (count) => {

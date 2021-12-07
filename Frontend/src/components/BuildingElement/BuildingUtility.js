@@ -1,5 +1,5 @@
 import mock_img from '../../Images/image-uploader-thumb.svg';
-
+ 
 
 export class AppendElement {
     constructor() {
@@ -27,7 +27,8 @@ export class AppendElement {
                         <div class="image-uploader-area">
                             <img src=${image1} alt="" />
                             <p class="mt-2">
-                                Drag and drop an Image, or <span class="theme-color">Browse</span>
+                                Drag and drop an Image, or <span class="theme-color uplaodButtonClass">Browse</span>
+
                             </p>
                         </div>
                     </div>
@@ -37,7 +38,8 @@ export class AppendElement {
                         <div class="image-uploader-area">
                             <img src=${image2} alt="" />
                             <p class="mt-2">
-                                Drag and drop an Image, or <span class="theme-color">Browse</span>
+                                Drag and drop an Image, or <span class="theme-color uplaodButtonClass">Browse</span>
+
                             </p>
                         </div>
                     </div>
@@ -86,4 +88,17 @@ export class AppendElement {
         }
         return id+"__"+Date.now()
     }
+
+    
+
 }
+
+
+const AlluploadButton = document.querySelectorAll('.image-uploader-area .uplaodButtonClass');
+
+AlluploadButton.forEach(element => {
+        element.addEventListener('click', function(){
+            alert("clicked");
+        })
+    });
+

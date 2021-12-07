@@ -38,16 +38,16 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-
-        
         $request->validate([
             'title' => "required",
             'categories' => 'required',
             'thumbnail' => 'required'
         ]);
+        
         $project = new project;
         $project->title = $request->title;
         $project->thumbnail = $request->thumbnail;
+        $project->user_id = $request->user()->id;
         $project->save();
 
         $allCategories = $request->categories;

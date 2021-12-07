@@ -7,9 +7,10 @@ const Navbar = () => {
         <>
             <nav className="navbar MainNavbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">
+
+                    <Link to='/'>   
                         <img src={logo} alt="" />
-                    </a>
+                    </Link>
                     <button className="navbar-toggler">
                         <span className="navbar-toggler-icon"></span>
                     </button>

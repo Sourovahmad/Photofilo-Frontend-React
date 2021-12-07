@@ -15,6 +15,11 @@ class CreateProjectHasContentsTable extends Migration
     {
         Schema::create('project_has_contents', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('project_id');
+            $table->string('image_big')->nullable();
+            $table->string('grid_image_one')->nullable();
+            $table->string('grid_image_two')->nullable();
+            $table->longText('text')->nullable();
             $table->timestamps();
         });
     }

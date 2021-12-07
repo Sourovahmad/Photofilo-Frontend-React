@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\authenticationController;
+use App\Models\project;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,11 +41,6 @@ Route::middleware(['auth'])->group(function () {
 
 // --------------------------- Testing Area ---------------------------
 
-Route::view('test', 'index');
-
-Route::post('reciveTest', function(Request $request){
-    return $request;
-    $allReq = $request->all();
-   return view('index', compact('allReq'));
-
-})->name('reciveTest');
+Route::get('test', function () {
+    return User::with('projects')->find(1);
+});

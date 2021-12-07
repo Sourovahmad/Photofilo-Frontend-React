@@ -42,10 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     public function role()
     {
       return $this->belongsTo(role::class, 'role_id', 'id')->get();
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(project::class, 'user_id', 'id');
     }
 
 }

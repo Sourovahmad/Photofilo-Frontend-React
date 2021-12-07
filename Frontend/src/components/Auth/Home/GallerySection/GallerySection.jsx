@@ -124,7 +124,7 @@ const GallerySection = () => {
                         gallerys.map(gallery => 
                             <a href="/">
                                 <div className='single_g'>
-                                    <img src={gallery.img} className="img-fluid" />
+                                    <img src={gallery.img} className="img-fluid" alt="" />
                                     <h3>{gallery.title}</h3>
                                     <p><a href={gallery.link1}>{gallery.link1}</a><a href={gallery.link2}>{gallery.link2}</a><a href={gallery.link3}>{gallery.link3}</a></p>
                                 </div>

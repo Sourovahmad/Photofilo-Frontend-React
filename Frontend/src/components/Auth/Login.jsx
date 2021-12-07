@@ -671,7 +671,7 @@ const Login = () => {
                         ve hizmetleri hakkinda e-posta yoluyla
                         bilgilendirebilir. Daha fazla bilgi veya istediginiz
                         zaman devre dis birakmak icin{" "}
-                        <a href="#">Gizlilink Politikasi</a> icerigine bakin.
+                        Gizlilink Politikasi icerigine bakin.
                       </p>
 
                       <div className="">
@@ -689,8 +689,8 @@ const Login = () => {
 
                       <p>
                         Hesap olustur secenegini tiklatarak{" "}
-                        <a href="#">Kullanm Kosullan</a> ve{" "}
-                        <a href="#">Gizlilik Politikasi</a> icerigini okuyup
+                       Kullanm Kosullan ve
+                       Gizlilik Politikasiicerigini okuyup
                         kabul ettigimi onaylarim.
                       </p>
                     </div>

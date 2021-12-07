@@ -3,10 +3,8 @@
 use App\Http\Controllers\authenticationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ImageController;
-use App\Http\Controllers\ItemController;
+use App\Http\Controllers\indexController;
 use App\Http\Controllers\ProjectController;
-use App\Models\project;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +26,7 @@ Route::get('categories', [CategoryController::class, 'index']);
 Route::post('apiRegister', [authenticationController::class, 'api_register']);
 Route::post('apiLogin', [authenticationController::class, 'api_login']);
 
+Route::get('project/{id}', [ProjectController::class, 'show']);
 
 
 Route::post('thumbnail-upload', [ImageController::class, 'thumbnailUpload']);
@@ -37,15 +36,11 @@ Route::post('thumbnail-upload', [ImageController::class, 'thumbnailUpload']);
 Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('apiLogout', [authenticationController::class, 'api_logout']);
-    Route::get('checkUser', function(Request $request){
-        return response()->json([
-            "user" => $request->user()
-        ],200);
-    });
-
+    Route::get('checkUser', [indexController::class, 'index']);
     Route::post('project-save', [ProjectController::class, 'store']);
     
-
 });
 
-Route::get('project/{id}', [ProjectController::class, 'show']);
+
+
+

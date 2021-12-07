@@ -30,17 +30,15 @@ const CreateButton = () => {
 
       axios.get(apiRoute + `project/${currentProjectId}`, config)
       .then(res => {
-        console.log(res);
         setprojecTitle(res.data.project.title);
         setSelectedCategory(res.data.categories);
         setSelectedThumb(res.data.project.thumbnail);
-        console.log(selectedCategories);
       })
       .catch(error=> {
         console.log(error);
       })
     }
-
+ // eslint-disable-next-line
   }, []);
 
 
@@ -56,12 +54,12 @@ const CreateButton = () => {
 
     if(selectorValue !== 125000){
 
-            const newFound = categories.find((e) => e.id === selectorValue);
-                const alreadyExist = selectedCategories.find((e)=> e.id === newFound.id);
-                if(alreadyExist === undefined){
-                    setSelectedCategory([...selectedCategories, newFound]);
-                    console.log(selectedCategories);
-                }
+          const newFound = categories.find((e) => e.id === selectorValue);
+          const alreadyExist = selectedCategories.find((e)=> e.id === newFound.id);
+            if(alreadyExist === undefined){
+                setSelectedCategory([...selectedCategories, newFound]);
+                console.log(selectedCategories);
+            }
     }
 
   }
@@ -129,21 +127,9 @@ const CreateButton = () => {
             onChange={(e)=> setprojecTitle(e.target.value)}
             className=" border-bottom rounded-0 fw-bolder form-control form__input"
           />
-          <div className="category col-6">
-            {selectedCategories.map((e) => (
-              <span>
-                {" "}
-                {e.name}{" "}
-                <span
-                  style={{ cursor: "pointer" }}
-                  onClick={() => categoryRemover(e.id)}
-                >
-                  x
-                </span>{" "}
-              </span>
-            ))}
 
-            <select
+  <div className="category col-6">
+        <select
               style={{ padding: "2px" }}
               name="categories"
               id="categorySelector"
@@ -156,7 +142,23 @@ const CreateButton = () => {
                 <option value={e.id}> {e.name}</option>
               ))}
             </select>
+    
           </div>
+
+          <div className="TagsItems d-flex mt-2" style={{ flexWrap:"wrap", flexDirection:"inherit" }}>
+            {selectedCategories.map((e) => (
+              <span className="badge bg-light text-dark m-1 p-1">
+                {e.name}
+                <i
+                  style={{ cursor: "pointer", marginLeft:"2px", color:"red", fontStyle:"inherit" }}
+                  onClick={() => categoryRemover(e.id)}
+                >
+                  x
+                </i>
+              </span>
+            ))}
+
+    </div> 
           <div className="mt-3 text-muted">
             <h6 className="small">Add Project image or thumbnail</h6>
             <div className="row">
