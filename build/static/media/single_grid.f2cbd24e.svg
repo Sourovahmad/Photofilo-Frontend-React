@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="148" height="60" viewBox="0 0 148 60">
+  <g id="single_grid" fill="rgba(79,185,252,0.4)" stroke="rgba(80,80,80,0.17)" stroke-width="1">
+    <path d="M10,0H138a10,10,0,0,1,10,10V60a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V10A10,10,0,0,1,10,0Z" stroke="none"/>
+    <path d="M10,.5H138a9.5,9.5,0,0,1,9.5,9.5V59a.5.5,0,0,1-.5.5H1A.5.5,0,0,1,.5,59V10A9.5,9.5,0,0,1,10,.5Z" fill="none"/>
+  </g>
+</svg>

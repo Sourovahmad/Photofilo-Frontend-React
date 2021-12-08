@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="148" height="62" viewBox="0 0 148 62">
+  <g id="duel_grid" transform="translate(-341.5 -466.5)">
+    <g id="duel_grid-2" data-name="duel_grid" transform="translate(341.5 467.5)" fill="rgba(79,185,252,0.4)" stroke="rgba(80,80,80,0.17)" stroke-width="1">
+      <path d="M10,0H138a10,10,0,0,1,10,10V61a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V10A10,10,0,0,1,10,0Z" stroke="none"/>
+      <path d="M10,.5H138a9.5,9.5,0,0,1,9.5,9.5V60a.5.5,0,0,1-.5.5H1A.5.5,0,0,1,.5,60V10A9.5,9.5,0,0,1,10,.5Z" fill="none"/>
+    </g>
+    <rect id="Rectangle_2123" data-name="Rectangle 2123" width="62" height="3" transform="translate(417 466.5) rotate(90)" fill="#fff"/>
+  </g>
+</svg>
