@@ -1,14 +1,14 @@
 import React from "react";
 
 const ProfileProject = ({project}) => {
-    console.log(project);
+
   return (
     <div>
       <div className="projectDemo">
-        <img src="" className="img-fluid" alt="" />
+        <img src={project.thumbnail} className="img-fluid" alt="" />
 
         <div className="info d-flex justify-content-between">
-          <p>Project Title 12345</p>
+          <p>{project.title}</p>
 
           <div className="d-flex justify-content-between view">
             <p>

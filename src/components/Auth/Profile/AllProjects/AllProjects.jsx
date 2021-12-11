@@ -1,13 +1,13 @@
 
 import './Allprojects.css';
 import profile from '../../../../Images/NewUser/Profile.png.webp'
-import project1 from '../../../../Images/NewUser/aa4.png';
 import { Link } from 'react-router-dom';
+import ProfileProject from '../../ProfileProject/ProfileProject';
 
 
 const AllProjects = ({prfileData}) => {
  
-
+console.log(prfileData);
     return (
     <div id='allProject_area'>
             <div className="container">
@@ -45,18 +45,12 @@ const AllProjects = ({prfileData}) => {
 
 
 
-                                <div className='projectDemo'>
-                                    <img src={project1} className='img-fluid' alt="" />
+                                {
+                                    prfileData.map((data,index)=> 
+                                            <ProfileProject project={data} />
+                                        )
+                                }
 
-                                    <div className='info d-flex justify-content-between'>
-                                        <p>Project Title 12345</p>
-
-                                        <div className='d-flex justify-content-between view'>
-                                            <p><i class="fas fa-edit"> Edit </i> </p>
-                                            <p><i class="fas fa-eye"> View </i> </p>
-                                        </div>
-                                    </div>
-                                </div>
 
 
 
@@ -81,7 +75,7 @@ const AllProjects = ({prfileData}) => {
                                 </div>
                             </div>
 
-                            <h5>Nicknameofphotographer</h5>
+                            <h5>Name</h5>
                             <p>Little description of the Photographer you know know</p>
                         
                             <button className='btn editProfile'> <i class="fas fa-plus-circle"></i> Edit Your Profile</button>

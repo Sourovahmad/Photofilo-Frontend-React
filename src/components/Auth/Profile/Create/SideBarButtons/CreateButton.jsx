@@ -17,6 +17,7 @@ const CreateButton = () => {
   const [projecTitle, setprojecTitle] = useState('');
   const [selectedThumb, setSelectedThumb] = useState('');
   const [isFormActive, setIsFormActive] = useState(false);
+  const [isCurrentProject, setCurrentProject] = useState(false);
   const [selectedCategories, setSelectedCategory] = useState([]);
 
   //Hook Secton
@@ -26,6 +27,8 @@ const CreateButton = () => {
     });
 
     const currentProjectId = window.sessionStorage.getItem('current_project_id');
+    setCurrentProject(true);
+
     if( currentProjectId !== undefined){
 
       axios.get(apiRoute + `project/${currentProjectId}`, config)
@@ -109,6 +112,37 @@ const CreateButton = () => {
   
   }
 
+
+  function projectUpdateHandle(){
+
+    if(projecTitle === '' ){
+      alert("Please Write A Title")
+    }else if(selectedCategories.length <= 0){
+        alert("Please Select A Category");
+    }else if(selectedThumb === ''){
+        alert("Please Chose A Thumbnail")
+    }else{
+      const formData = {
+        title: projecTitle,
+        categories: selectedCategories,
+        thumbnail:selectedThumb
+      }
+      const currentProjectId = window.sessionStorage.getItem('current_project_id');
+
+      axios.post(apiRoute + `project-update/${currentProjectId}`, formData, config)
+      .then(res => {
+        console.log(res);
+        window.sessionStorage.setItem('current_project_id', res.data.project_id);
+        alert("Project Updated Successfully");
+        setIsFormActive(false);
+
+      }
+        )
+      .catch(error => console.log(error));
+    }
+
+  }
+
   return (
     <div className="option-button create-button">
       <div onClick={() => setIsFormActive(true)} className="button__image">
@@ -182,7 +216,13 @@ const CreateButton = () => {
             </div>
           </div>
           <div className="text-end pb-2">
-            <button className="theme-btn btn-small small rounded" onClick={()=>projectCreateHandle()}>Save</button>
+            {
+              isCurrentProject ? 
+              <button className="theme-btn btn-small small rounded" onClick={()=>projectUpdateHandle()}>Update</button>
+              :
+              <button className="theme-btn btn-small small rounded" onClick={()=>projectCreateHandle()}>Save</button>
+            }
+            
           </div>
 
           <InlineIcon

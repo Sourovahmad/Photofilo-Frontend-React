@@ -19,7 +19,7 @@ function App() {
         };
         axios.get(apiRoute + "checkUser", config)
         .then(res =>{
-            setprfileData(res.data.user.projects);
+            setprfileData(res.data.user.projects.reverse());
             setLoggedIn(true);
         })
         .catch(error =>{
