@@ -26,6 +26,8 @@ const GallerySection = () => {
 
       //eslint-disable-next-line
     }, []);
+    console.log(allProjects);
+
 
 
     function categoryChanger(category_id){
@@ -35,10 +37,9 @@ const GallerySection = () => {
             axios.get(apiRoute + `category-filter/${category_id}`)
             .then(res =>   setgellaries(res.data.projects))
             .catch(error => console.log(error));
+
         }
     }
-
-    console.log(allProjects);
 
 
     return (
@@ -63,7 +64,7 @@ const GallerySection = () => {
                                 <div className='single_g'>
                                     <img src={gallery.thumbnail} className="img-fluid" alt="" />
                                     <h3>{gallery.title}</h3>
-                                    <p> <a href={gallery.link1}> hi </a><a href={gallery.link2}>hi</a><a href={gallery.link3}>hi</a></p>
+                                    <p> <Link to={`/freelancer-profile/${gallery.user_id}`}> {gallery.user.name}  </Link> </p>
                                 </div>
                             </Link>
                         )

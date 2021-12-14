@@ -14,7 +14,7 @@ const AllRoutes = ({ prfileData, loggedIn }) => {
       <Routes>
         {/* public Compnents */}
         <Route path="/" element={<Home></Home>} />
-        <Route path="/freelancer-profile" element={<FreelancerHome></FreelancerHome>} />
+        <Route path="/freelancer-profile/:userId" element={<FreelancerHome></FreelancerHome>} />
         <Route path="/project/:projectId" element={<SingleProject></SingleProject>} />
         <Route path="/login" element={<Login></Login>} />
         <Route path="*" element={<Notfound></Notfound>} />

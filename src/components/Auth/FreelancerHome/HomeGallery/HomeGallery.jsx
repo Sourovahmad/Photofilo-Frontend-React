@@ -1,59 +1,69 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import './HomeGallery.css';
-import g1 from '../../../../Images/FreelancerMain/h2-portfolio-img-1.jpg';
-import g2 from '../../../../Images/FreelancerMain/h2-portfolio-img-2.jpg';
 
 
-const gallerys = [
-    {
-
-        img: g1,
-        title: 'Booklet',
-        link1: 'branding / ',
-        link2: 'design / ',
-        link3: 'media / ',
-        link4: 'showcase'
-    },
-    {
-        img: g2,
-        title: 'Fresh & Easy',
-        link1: 'media / ', 
-        link2: 'showcase / ', 
-        link3: 'web'
-    },
-];
 
 
-const HomeGallery = () => {
+const HomeGallery = ({projects}) => {
+
+    const {userId} = useParams();
+    const [categories, setCategories] = useState([]);
+    const [filderData, setFilterData] = useState([]);
+    const apiRoute = process.env.REACT_APP_API_TO;
+
+    useEffect(() => {
+
+        axios.get(apiRoute + 'categories')
+        .then(res => setCategories(res.data));
+        setFilterData(projects);
+
+    }, [])
+
+    function categoryFilterByUser(category_id){
+        if(category_id === 'all'){
+            setFilterData(projects);
+        }else{
+            const formData = new FormData();
+            formData.append('user_id', userId);
+            formData.append('category_id', category_id);
+
+
+            axios.post(apiRoute + 'user-category-project-filter',formData)
+            .then(res => console.log(res))
+        }
+    }
 
     
-    return (
-<div id='home_gallery_area'>
+return (
+        <div id='home_gallery_area'>
             <div className='container'>
                 <div className='category'>
                     <ul>
-                        <li><button className='btn active'>Show All</button></li>
-                        <li><button className='btn'>BRANDING</button></li>
-                        <li><button className='btn'>DESIGN</button></li>
-                        <li><button className='btn'>PHOTO</button></li>
-                        <li><button className='btn'>WEB</button></li>
+                        <li><button className='btn active' onClick={()=>categoryFilterByUser('all') }>Show All</button></li>
+                       {
+                           categories.map(category => 
+                            <li><button className='btn active' onClick={()=>categoryFilterByUser(category.id) }>{category.name}</button></li>
+                            )
+                       }
                     </ul>  
                 </div>
 
                 <div className='row'>
                     {
-                        gallerys.map(gallery => 
+                        filderData.map(project => 
                             <div className='col-md-6 col-sm-12'>
-                                <a href="/" className='gallery'>
+                                <Link to={`/project/${project.id}`} className='gallery'>
                                     <div className='single_g'>
-                                        <img src={gallery.img} className="img-fluid" alt=''/>
+                                        <img src={project.thumbnail} className="img-fluid" alt=''/>
 
                                         <div className='hidden'>
-                                            <h3>{gallery.title}</h3>
-                                            <p><a href={gallery.link1}>{gallery.link1}</a><a href={gallery.link2}>{gallery.link2}</a><a href={gallery.link3}>{gallery.link3}</a><a href={gallery.link4}>{gallery.link4}</a></p>
+                                            <h3>{project.title}</h3>
+                                            <p></p>
                                         </div>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                         )
                     }
