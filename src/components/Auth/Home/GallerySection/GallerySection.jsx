@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './GallerySection.css';
+import { Link } from 'react-router-dom';
 
 
 const GallerySection = () => {
@@ -12,7 +13,6 @@ const GallerySection = () => {
     const [gellaries, setgellaries] = useState([]);
     const [allProjects, setallProjects] = useState([]);
     const [categories, setcategories] = useState([]);
-    const [projectHasCategories, setprojectHasCategories] = useState([]);
 
     useEffect(() => {
 
@@ -20,8 +20,8 @@ const GallerySection = () => {
       .then(res => {
         setgellaries(res.data.allProjects);
         setallProjects(res.data.allProjects);
-        setcategories(res.data.categories);
-        setprojectHasCategories(res.data.categoryHasproject)
+        setcategories(res.data.categories)
+
       });
 
       //eslint-disable-next-line
@@ -29,9 +29,16 @@ const GallerySection = () => {
 
 
     function categoryChanger(category_id){
-        console.log(category_id);
+        if (category_id === 'all'){
+            setgellaries(allProjects);
+        }else{
+            axios.get(apiRoute + `category-filter/${category_id}`)
+            .then(res =>   setgellaries(res.data.projects))
+            .catch(error => console.log(error));
+        }
     }
 
+    console.log(allProjects);
 
 
     return (
@@ -40,27 +47,25 @@ const GallerySection = () => {
             <div className='container'>
                 <div className='category'>
                     <ul>
-                    <li><button className='btn active'>Show All</button></li>
+                    <li><button className='btn active' onClick={() => categoryChanger('all')}>Show All</button></li>
                         {
                             categories.map(category =>{ 
-                             return <li><button className='btn active'onClick={() => categoryChanger(category.id)} >{category.name}</button></li>
+                             return <li><button className='btn active' onClick={() => categoryChanger(category.id)} >{category.name}</button></li>
                             })
                         }
-                        
-                      
                     </ul>  
                 </div>
 
-                <div className='d-md-flex d-lg-flex flex-md-wrap flex-lg-wrap justify-content-between gallery'>
+                <div className='d-md-flex d-lg-flex flex-md-wrap flex-lg-wrap gallery'>
                     {
                         gellaries.map(gallery => 
-                            <a href="/">
+                            <Link to={`project/${gallery.id}`} style={{ margin:'15px' }}> 
                                 <div className='single_g'>
                                     <img src={gallery.thumbnail} className="img-fluid" alt="" />
                                     <h3>{gallery.title}</h3>
-                                    <p><a href={gallery.link1}>{gallery.link1}</a><a href={gallery.link2}>{gallery.link2}</a><a href={gallery.link3}>{gallery.link3}</a></p>
+                                    <p> <a href={gallery.link1}> hi </a><a href={gallery.link2}>hi</a><a href={gallery.link3}>hi</a></p>
                                 </div>
-                            </a>
+                            </Link>
                         )
                     }
                 </div>

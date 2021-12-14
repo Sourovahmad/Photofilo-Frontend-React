@@ -1,0 +1,16 @@
+.textSectionP{
+    width: 97%;
+    word-wrap: break-word;
+}
+
+.containerBigImage{
+    max-height: 80%;
+    max-width: 100%;
+    margin: auto;
+}
+
+.containerBigImage img{
+    max-width: 100%;
+    max-height: 100%;
+    padding: 30px;
+}

@@ -1,0 +1,134 @@
+#home_gallery_area {
+    background: #fff;
+    z-index: 100;
+    margin-bottom: 80px;
+    transition: all .3s ease;
+}
+#home_gallery_area .category {
+    margin-top: 70px;
+}
+#home_gallery_area .category ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+#home_gallery_area .category ul li {
+    text-align: center;
+}
+#home_gallery_area .category ul li button {
+    color: #878787;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#home_gallery_area .gallery {
+    text-decoration: none;
+    transition: color .2s ease-out;
+}
+#home_gallery_area .gallery .single_g {
+    margin-bottom: 40px;
+    transition: all .3s ease;
+    position: relative;
+    display: block;
+    border: 1px solid #fff;
+}
+#home_gallery_area .gallery .single_g img {
+    width: 100%;
+    height: 480px;
+    display: block;
+    overflow-y: auto;
+    background-color: transparent;
+    transition: height .5s ease;
+}
+#home_gallery_area .gallery:hover .single_g img {
+    height: 380px;
+}
+#home_gallery_area .gallery .single_g .hidden {
+    position: absolute;
+    left: 0;
+    top: 370px;
+    width: 100%;
+    display: block;
+    height: 100px;
+    z-index: 1;
+    padding: 15px;
+    opacity: 0;
+    transition: all .3s ease;
+}
+#home_gallery_area .gallery:hover .single_g .hidden {
+    opacity: 1;
+}
+#home_gallery_area .gallery .single_g h3 {
+    font-size: 20px;
+    font-family: Montserrat,sans-serif;
+    font-weight: 700;
+    color: #010101;
+    padding: 15px 0 5px;
+    margin: 0;
+}
+#home_gallery_area .gallery .single_g p {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .3em;
+}
+#home_gallery_area .gallery .single_g a {
+    color: #878787;
+}
+#home_gallery_area .gallery .single_g a:hover {
+    color: #010101;
+}
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+    #home_gallery_area {
+        padding-bottom: 20px;
+    }
+    #home_gallery_area .category {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+    #home_gallery_area .category ul {
+        flex-wrap: wrap;
+        padding-left: 0;
+    }
+    #home_gallery_area .gallery .single_g {
+        padding: 0 20px;
+    }
+    #home_gallery_area .gallery .single_g img {
+        width: auto;
+        height: auto;
+    }
+    #home_gallery_area .gallery .single_g h3 {
+        font-size: 23px;
+    }
+    #home_gallery_area .gallery .single_g p {
+        font-size: 12px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

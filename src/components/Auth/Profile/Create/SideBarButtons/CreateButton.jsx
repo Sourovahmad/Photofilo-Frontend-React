@@ -27,9 +27,9 @@ const CreateButton = () => {
     });
 
     const currentProjectId = window.sessionStorage.getItem('current_project_id');
-    setCurrentProject(true);
+    if( currentProjectId !== null){
 
-    if( currentProjectId !== undefined){
+      setCurrentProject(true);
 
       axios.get(apiRoute + `project/${currentProjectId}`, config)
       .then(res => {
@@ -104,6 +104,7 @@ const CreateButton = () => {
         window.sessionStorage.setItem('current_project_id', res.data.project_id);
         alert("Project Created Successfully");
         setIsFormActive(false);
+        setCurrentProject(true);
 
       }
         )

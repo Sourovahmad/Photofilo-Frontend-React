@@ -49,6 +49,7 @@
     color: #010101;
     padding: 15px 0 5px;
     margin: 0;
+    word-break: break-all;
 }
 #gallery_area .gallery .single_g p {
     font-size: 11px;

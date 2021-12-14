@@ -1,0 +1,93 @@
+.freelancerMain_area {
+}
+.freelancerMain_area .freelancer_navArea  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    margin: 0 40px;
+    z-index: 99;
+}
+.freelancerMain_area .freelancer_navArea .navInner  {
+    text-align: right;
+}
+.freelancerMain_area .freelancer_navArea .navInner ul {
+    display: flex;
+    list-style: none;
+    margin-right: -30px;
+}
+.freelancerMain_area .freelancer_navArea .navInner ul a {
+    color: #010101;
+    font-size: 12px;
+    text-decoration: none;
+    letter-spacing: 3px;
+    margin: 0 15px;
+}
+.freelancerMain_area .freelancer_navArea .navInner ul button {
+    color: #010101;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin: 0 15px;
+    border-radius: 0;
+}
+.freelancerMain_area .freelancer_navArea .navInner ul button:focus {
+    box-shadow: none;
+}
+
+.freelancerMain_area .freelancer_navArea .logo img  {
+    width: 55px;
+    z-index: 1;
+}
+.freelancerMain_area .showcase {
+    padding: 130px 0;
+    position: relative;
+}
+.freelancerMain_area .showcase::before {
+    position: absolute;
+    content: '';
+    top: -90px;
+    left: -400px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: url(../../../Images/HomeMain/FreelancerMain/h2-title-img-1.jpg) no-repeat;
+}
+.freelancerMain_area .showcase h2 {
+    font-size: 70px;
+    text-align: center;
+    font-weight: 700;
+}
+
+
+
+
+
+/* responsive code */
+@media only screen and (max-width: 600px) {
+    .freelancerMain_area .freelancer_navArea  {
+        overflow: visible;
+        margin-left: 20px;
+    }
+    .freelancerMain_area .freelancer_navArea .navInner ul {
+        display: block;
+        text-align: right;
+    }
+    .freelancerMain_area .freelancer_navArea .navInner ul .extra {
+        margin-right: 0;
+    }
+    .freelancerMain_area .showcase::before {
+        top: 0;
+        left: -60px;
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+    }
+    .freelancerMain_area .showcase h2 {
+        font-size: 50px;
+    }
+}
+
+
+
+
+
