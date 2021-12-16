@@ -1,6 +1,6 @@
 
 import './Allprojects.css';
-import profile from '../../../../Images/NewUser/Profile.png.webp'
+import profile from '../../../../Images/taha/84f03913-87eb-4488-a72e-c1f4061ac16c.jpg'
 import { Link } from 'react-router-dom';
 import ProfileProject from '../../ProfileProject/ProfileProject';
 

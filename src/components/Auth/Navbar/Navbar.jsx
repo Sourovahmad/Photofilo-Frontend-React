@@ -2,6 +2,7 @@ import React from 'react';
 import {Outlet,Link} from "react-router-dom";
 import logo from '../../../Images/Logo.png';
 import { InlineIcon } from '@iconify/react';
+import profile_image from '../../../Images/taha/84f03913-87eb-4488-a72e-c1f4061ac16c.jpg'
 const Navbar = () => {
     return (
         <>
@@ -63,7 +64,9 @@ const Navbar = () => {
                         <ul className="navbar-nav end-element">
                             <li className="nav-item">
                                 <Link className="nav-link" to="/">
-                                    Home
+                                    <div className="profile">
+                                        <img src={profile_image} alt="" />
+                                    </div>
                                 </Link>
                             </li>
                         </ul>

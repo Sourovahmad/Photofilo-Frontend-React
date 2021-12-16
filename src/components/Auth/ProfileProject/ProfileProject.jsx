@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProfileProject = ({project}) => {
 
@@ -15,7 +16,9 @@ const ProfileProject = ({project}) => {
               <i class="fas fa-edit"> Edit </i>{" "}
             </p>
             <p>
-              <i class="fas fa-eye"> View </i>{" "}
+              <Link to={`/project/${project.id}`} >
+              <i class="fas fa-eye"> View </i>
+               </Link>
             </p>
           </div>
         </div>
