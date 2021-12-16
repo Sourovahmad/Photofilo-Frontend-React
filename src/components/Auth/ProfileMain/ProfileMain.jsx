@@ -1,12 +1,8 @@
-
-import React, { useState } from 'react';
-import './Main.css';
-import main from '../../../../Images/PortfolioGallery/main-home-slider-img-10.png';
-import logo from '../../../../Images/PortfolioGallery/logo-dark.png';
+import {React,useState } from 'react';
 import { Link } from 'react-router-dom';
-
-
-const MainSection = () => {
+import logo from '../../../Images/PortfolioGallery/logo-dark.png';
+import './profileMain.css'
+const ProfileMain = () => {
 
     const [navToggle, setNavToggle] = useState(true);
     const [toggle, setToggle] = useState(true);
@@ -18,9 +14,14 @@ const MainSection = () => {
         }
     }
 
+  
+
+
+
     return (
-        <>
-        <div id="main_area">
+        <div>
+            <div id="main_area" >
+                <div className="profile_main_area_section">  
             <div className='container overflow-hidden'>
                 <div className='navArea'>
 
@@ -32,6 +33,7 @@ const MainSection = () => {
                         <button onClick={() => handleToggle(true)} class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
+
 
                         {toggle &&
                             <div>
@@ -53,20 +55,20 @@ const MainSection = () => {
                 
                             <div className='mainInfo'>
                                 <p>Smart Theme For Creatives</p>
-                                <h1>Welcome to Måne</h1>
-                                <a href="/">View More</a>
+                                <h1>Welcome To Mane</h1>
                             </div>
                         </div>
 
-                        <div className='col-md-6'>
-                            <img src={main} className='bg img-fluid' alt="" />
+                        <div className='col-md-6' style={{ minHeight: '100vh' }}>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </>
+        </div>
+        </div>
     );
 };
 
-export default MainSection;
+export default ProfileMain;

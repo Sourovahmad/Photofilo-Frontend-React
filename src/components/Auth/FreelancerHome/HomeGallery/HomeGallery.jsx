@@ -17,8 +17,10 @@ const HomeGallery = ({projects}) => {
 
         axios.get(apiRoute + 'categories')
         .then(res => setCategories(res.data));
-        setFilterData(projects);
-
+        
+        axios.get(apiRoute + `user-projects/${userId}`)
+        .then(res => setFilterData(res.data.projects));
+        //eslint-disable-next-line
     }, [])
 
     function categoryFilterByUser(category_id){
@@ -28,8 +30,6 @@ const HomeGallery = ({projects}) => {
             const formData = new FormData();
             formData.append('user_id', userId);
             formData.append('category_id', category_id);
-
-
             axios.post(apiRoute + 'user-category-project-filter',formData)
             .then(res => console.log(res))
         }
@@ -53,7 +53,7 @@ return (
                 <div className='row'>
                     {
                         filderData.map(project => 
-                            <div className='col-md-6 col-sm-12'>
+                            <div className='col-md-3 col-sm-12'>
                                 <Link to={`/project/${project.id}`} className='gallery'>
                                     <div className='single_g'>
                                         <img src={project.thumbnail} className="img-fluid" alt=''/>

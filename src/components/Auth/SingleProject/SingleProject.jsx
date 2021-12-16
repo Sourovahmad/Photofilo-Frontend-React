@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ProfileMain from '../ProfileMain/ProfileMain';
 import './SingleProject.css'
 
 const SingleProject = () => {
@@ -20,13 +21,15 @@ const SingleProject = () => {
         //eslint-disable-next-line
     }, [])
 
-    console.log(content);
     return (
         <div>
+                <ProfileMain></ProfileMain>
             
                 {
                     content.map(project =>{
                         return <div>
+                            
+ 
                     
                         {
                             project.big_image !== null ?
@@ -36,6 +39,9 @@ const SingleProject = () => {
                             </div> 
                             </div> : ''
                         }
+                        <div className="container">
+
+
                         <div className="row">
                            
                         {
@@ -53,6 +59,7 @@ const SingleProject = () => {
                             </div>
                              : ''
                         }
+                           </div>
                         </div>
                         {
                             project.text !== null ?

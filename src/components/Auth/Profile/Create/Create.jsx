@@ -14,6 +14,7 @@ const Create = () => {
     const [isInsertMediaBar, setIsInsertMediaBar] = useState(null)
     const [isTextBar, setIsTextBar] = useState(false);
     const [currentContents, setcurrentContents] = useState([]);
+    const [iscurrentProject, setiscurrentProject] = useState(false);
     const apiRoute = process.env.REACT_APP_API_TO;
 
     useEffect(() => {
@@ -32,7 +33,7 @@ const Create = () => {
 
         appender.pageArea?.addEventListener("DOMNodeInserted", () => {
             eventForUpload();
-            handleRemoveImage()
+            handleRemoveImage();
         });
 
         const eventForUpload = function () {
@@ -72,23 +73,38 @@ const Create = () => {
         const currentProjectId = window.sessionStorage.getItem('current_project_id');
 
         if( currentProjectId !== null){
+            setiscurrentProject(true)
             axios.get(apiRoute + `project/${currentProjectId}`)
             .then(res => setcurrentContents(res.data.contents));
         }
 
 
-        currentContents.map(Singlecontent => {
-            return <>
-            {
-                Singlecontent.image_big !== null ? appender.appendOneGrid(Singlecontent.image_big) : ''
-            }
-            
-            </>
-        })
-        eventForUpload();
-        handleRemoveImage()
 
+            
+
+        eventForUpload();
+        handleRemoveImage();
+
+        //eslint-disable-next-line
     }, []);
+
+
+
+
+    function projectPublisher(){
+        const currentProjectId = window.sessionStorage.getItem('current_project_id');
+        const formData = new FormData();
+        formData.append("project_id", currentProjectId);
+
+        axios.post(apiRoute + 'active-project', formData)
+        .then(res => {
+            window.sessionStorage.setItem('current_project_id', null);
+            alert("Project Publish Successfully")
+            window.location.reload();
+            sessionStorage.removeItem('current_project_id'); 
+            setiscurrentProject(false)
+        });
+    }
 
 
     return (
@@ -130,7 +146,11 @@ const Create = () => {
                         {isInsertMediaBar && <InsertMediaBar  setIsTextBar={setIsTextBar} setIsInsertMediaBar={setIsInsertMediaBar} />}
                     </div>
                     <div className="button_wrapper">
-                        <button className="btn btn-lg theme-btn rounded w-100 p-2">Button Place</button>
+                        {
+                            iscurrentProject &&
+                            <button className="btn btn-lg theme-btn rounded w-100 p-2" onClick={()=>projectPublisher()}> Publish </button>
+                        }
+                        
                     </div>
                 </div>
             </div>

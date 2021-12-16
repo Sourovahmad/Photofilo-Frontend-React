@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import logo from '../../../Images/HomeMain/FreelancerMain/logo-dark.png';
 import Typist from 'react-typist';
 import './HomeMain.css';
+import { Link } from 'react-router-dom';
 
 
 const HomeMain = () => {
@@ -17,9 +18,9 @@ const HomeMain = () => {
         
 <div className='freelancerMain_area'>
             <div className='freelancer_navArea'>
-                <a href="#" className='logo'>
-                    <img src={logo} className='img-fluid' />
-                </a>
+               <Link to='/' className='logo'>
+                    <img src={logo} className='img-fluid' alt='' />
+             </Link>
 
                 <div className='navInner'>
                     <ul className=''>

@@ -16,6 +16,7 @@ const CreateButton = () => {
   const [categories, setCategories] = useState([]);
   const [projecTitle, setprojecTitle] = useState('');
   const [selectedThumb, setSelectedThumb] = useState('');
+  const [selectFullImage, setSelectFullImage] = useState('');
   const [isFormActive, setIsFormActive] = useState(false);
   const [isCurrentProject, setCurrentProject] = useState(false);
   const [selectedCategories, setSelectedCategory] = useState([]);
@@ -79,7 +80,10 @@ const CreateButton = () => {
     formData.append("file", fileData);
     
       axios.post(apiRoute + "thumbnail-upload", formData)
-      .then(response => setSelectedThumb(response.data.imageName))
+      .then(response => {
+        setSelectedThumb(response.data.imageNameSmall)
+        setSelectFullImage(response.data.imageNameBig);
+      })
       .catch(error => console.log(error));
   }
 
@@ -95,17 +99,18 @@ const CreateButton = () => {
       const formData = {
         title: projecTitle,
         categories: selectedCategories,
-        thumbnail:selectedThumb
+        thumbnail:selectedThumb,
+        fullimage:selectFullImage
       }
 
       axios.post(apiRoute + "project-save", formData, config)
       .then(res => {
-        console.log(res);
+      
         window.sessionStorage.setItem('current_project_id', res.data.project_id);
         alert("Project Created Successfully");
         setIsFormActive(false);
         setCurrentProject(true);
-
+        window.location.reload();
       }
         )
       .catch(error => console.log(error));
@@ -132,7 +137,6 @@ const CreateButton = () => {
 
       axios.post(apiRoute + `project-update/${currentProjectId}`, formData, config)
       .then(res => {
-        console.log(res);
         window.sessionStorage.setItem('current_project_id', res.data.project_id);
         alert("Project Updated Successfully");
         setIsFormActive(false);

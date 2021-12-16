@@ -16,6 +16,8 @@ const FreelancerHome = () => {
         axios.get(apiRoute + `user-projects/${userId}`)
         .then(res => setUserProjects(res.data.projects))
         .catch(error => console.log(error, "getting user projects"));
+        
+        //eslint-disable-next-line
     }, []);
 
     return (

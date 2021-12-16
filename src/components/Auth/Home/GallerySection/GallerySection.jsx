@@ -26,7 +26,6 @@ const GallerySection = () => {
 
       //eslint-disable-next-line
     }, []);
-    console.log(allProjects);
 
 
 

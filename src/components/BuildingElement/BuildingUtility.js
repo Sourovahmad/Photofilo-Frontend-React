@@ -50,7 +50,7 @@ export class AppendElement {
                         </label>
                         <input type="file" name="" id="${id2}" class="d-none uploader-input-grid_2" />
                     </p>
-                    <div data-id="${id2}" class="cancel-button d-none">&times;</div>
+                    <div data-id="${id2}" class="cancel-button button-for-2-grid d-none">&times;</div>
 
                 </div>
             </div>
@@ -65,20 +65,25 @@ export class AppendElement {
         const id = this.randomIdGenerator(10);
         const div = document?.createElement("div");
         div.className = "image-uploader-area one__layout__site";
-        div.id = `area-${id}`;
         div.innerHTML =
             /* html */
-            `<img class="placeholder_image" src=${image} alt="" />
-              <p class="mt-2 placeholder_text">
-                  Drag and drop an Image, or
-                  <label for="file-upload-1" class="theme-color upload-btn">
-                      Browse
-                  </label>
-                  <input type="file" name="" id="file-upload-1" class="d-none uploader-input" />
-              </p>
-                 <div data-id="${id}" class="cancel-button d-none">&times;</div>
-              
-              `;
+            `<div class="wrapper-1">
+            <div  class="wrapper-2">
+                <div id="area-${id}" class="upload-area">
+                     <img class="placeholder_image" src=${image} alt="" />
+                     <p class="mt-2 placeholder_text">
+                         Drag and drop an Image, or
+                         <label for="file-upload-${id}" class="theme-color upload-btn">
+                             Browse
+                         </label>
+                         <input type="file" name="" id="file-upload-${id}" class="d-none uploader-input" />
+                     </p>
+                     <div data-id="${id}" class="cancel-button d-none">&times;</div>
+                 </div>
+             </div>
+        </div>
+          
+          `;
         this.pageArea.appendChild(div);
     }
 
@@ -91,10 +96,28 @@ export class AppendElement {
         const value = this.writingBox?.value;
         const p = document?.createElement("p");
         p.className = `mb-0 page-text ${this.randomIdGenerator(20)} `;
-        p.innerHTML = value;
-        this.pageArea.appendChild(p);
-        console.log("text added");
-        this.writingBox.value = "";
+
+        const currentProjcetId = sessionStorage.getItem('current_project_id')
+        const apiRoute = process.env.REACT_APP_API_TO;
+
+        if(currentProjcetId !== null){
+
+        const formData = new FormData();
+        formData.append('project_id', currentProjcetId);
+        formData.append('type', 'text');
+        formData.append('text', value);
+
+        axios.post(apiRoute + 'project-content-upload', formData)
+        .then(res => {
+            p.innerHTML = res.data.text;
+            this.pageArea.appendChild(p);
+            console.log("text added");
+            this.writingBox.value = "";
+        });
+
+        }else{
+            alert("Create A Project First")
+        }
 
     }
 
@@ -273,9 +296,6 @@ export class AppendElement {
     handleRemoveImage(id) {
         const imageArea = this.pageArea.querySelector(`#area-${id}`);
         const uploadedImage = imageArea.querySelector(".uploaded_image");
-        const placeholder_image = imageArea?.querySelector(".placeholder_image");
-        const placeholder_text = imageArea?.querySelector(".placeholder_text");
-        const cancelButton = imageArea?.querySelector(".cancel-button");
         if (uploadedImage) {
 
             const ImageUrl = uploadedImage.getAttribute('src');
@@ -287,11 +307,7 @@ export class AppendElement {
             axios.post(apiRoute + `project-content-remover`, formData)
 
             .then(res =>{
-                placeholder_image?.classList?.remove("d-none");
-                placeholder_text?.classList?.remove("d-none");
-                cancelButton?.classList?.add("d-none");
-                imageArea?.classList.remove("image-uploaded");
-                uploadedImage.remove();
+               imageArea.parentElement?.parentNode?.parentNode?.remove()
             })
             .catch(e => alert("server Error"));
 

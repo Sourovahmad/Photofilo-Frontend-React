@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import Test from "../../Test/Test";
 import FreelancerHome from "../Auth/FreelancerHome/FreelancerHome";
 import Home from "../Auth/Home/Home";
 import Login from "../Auth/Login";
@@ -25,9 +24,8 @@ const AllRoutes = ({ prfileData, loggedIn }) => {
           path="/profile"
           element={loggedIn ? <Profile prfileData={prfileData}></Profile> : <Login></Login>}
         />
+        <Route path="/create" element={ loggedIn ?  <Create></Create>  : <Login></Login> } />
 
-        <Route path="/create" element={<Create></Create>} />
-        <Route path="/test" element={<Test></Test>} />
       </Routes>
     </div>
   );
