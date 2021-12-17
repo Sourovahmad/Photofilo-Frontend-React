@@ -8,6 +8,10 @@ import SingleProject from "../Auth/SingleProject/SingleProject";
 import Notfound from "../Errors/Notfound";
 
 const AllRoutes = ({ prfileData, loggedIn }) => {
+
+
+
+
   return (
     <div>
       <Routes>
@@ -24,7 +28,8 @@ const AllRoutes = ({ prfileData, loggedIn }) => {
           path="/profile"
           element={loggedIn ? <Profile prfileData={prfileData}></Profile> : <Login></Login>}
         />
-        <Route path="/create" element={ loggedIn ?  <Create></Create>  : <Login></Login> } />
+        <Route path="/create" element={ loggedIn ?  <Create editProject={false}></Create>  : <Login></Login> } />
+        <Route path="/create/:editProjectId" element={  loggedIn ?  <Create editProject={true}></Create>  : <Login></Login> } />
 
       </Routes>
     </div>

@@ -36,6 +36,9 @@
 #allProject_area .projectInner .projectList .projectDemo .info {
     padding-left: 10px;
 }
+#allProject_area .projectInner .projectList .projectDemo .info p {
+    word-wrap: break-word;
+}
 #allProject_area .projectInner .projectList .projectDemo p {
     margin: 0;
 }

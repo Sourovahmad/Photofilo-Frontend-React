@@ -13,7 +13,9 @@ const ProfileProject = ({project}) => {
 
           <div className="d-flex justify-content-between view">
             <p>
-              <i class="fas fa-edit"> Edit </i>{" "}
+              <Link to={`/create/${project.id}`}> 
+                <i class="fas fa-edit"> Edit </i>{" "}
+              </Link>
             </p>
             <p>
               <Link to={`/project/${project.id}`} >
