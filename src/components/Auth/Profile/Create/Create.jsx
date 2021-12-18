@@ -34,6 +34,7 @@ const Create = ({editProject}) => {
         appender.pageArea?.addEventListener("DOMNodeInserted", () => {
             eventForUpload();
             handleRemoveImage();
+            handleRemoveText();
         });
 
         const eventForUpload = function () {
@@ -69,18 +70,27 @@ const Create = ({editProject}) => {
             })
         }
 
+
+        const handleRemoveText =() =>{
+            const allEditButtons = appender.pageId?.querySelectorAll(".textCancelButton");
+            console.log(allEditButtons);
+            [...allEditButtons].forEach(button => {
+                button.onclick = () => appender.handleRemoveTextSection(button.dataset.id)
+            })
+        }
     
-
-
             
 
         eventForUpload();
         handleRemoveImage();
+        handleRemoveText();
+
 
         //eslint-disable-next-line
     }, []);
 
 
+  
 
 
     function projectPublisher(){
@@ -109,7 +119,7 @@ const Create = ({editProject}) => {
 
        if(editProject === true){
            if(iscurrentProject === true){
-               alert("Complete Your Current Project First")
+               alert("Complete Your Current Project First");
            }else{
 
             axios.get(apiRoute + `project-content/${editProjectId}`)
@@ -120,10 +130,13 @@ const Create = ({editProject}) => {
                 editContents.map(project => {
                     return <>
                     {
-                    project.image_big !== null ? appender.appendOneGrid(project.image_big) : ''
+                     project.image_big !== null ? appender.appendExistingOne(project.image_big) : ''
                     }
                     {
-                        project.grid_image_one !== null ? appender.appendTwoGrid(project.grid_image_one, project.grid_image_two) : ''
+                        project.grid_image_one !== null ? appender.appendExistingTwo(project.grid_image_one, project.grid_image_two) : ''
+                    }
+                    {
+                        project.text !== null ? appender.appendExistingText(project.text) : ''
                     }
                     </>
                 })
@@ -191,14 +204,11 @@ const Create = ({editProject}) => {
                         {isInsertMediaBar && <InsertMediaBar  setIsTextBar={setIsTextBar} setIsInsertMediaBar={setIsInsertMediaBar} />}
                     </div>
                     <div className="button_wrapper">
-                        {
-                            iscurrentProject &&
+                       
                             <button className="btn btn-lg theme-btn rounded w-100 p-2" onClick={()=>projectPublisher()}> Publish </button>
-                        }
-                        {
-                            iscurrentProject &&
+
                             <button className="btn btn-danger rounded w-100 p-2 mt-4" onClick={()=>projectDrafter()}> Add To Draft </button>
-                        }
+                   
                        
                     </div>
                 </div>

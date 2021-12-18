@@ -751,3 +751,10 @@ footer#footer .footer-copyright .icons .icon .iconify:hover {
   background: white;
 }
 /*# sourceMappingURL=style.css.map */
+
+
+
+.textCancelButton{
+  color: red;
+  font-size: 28px;
+}

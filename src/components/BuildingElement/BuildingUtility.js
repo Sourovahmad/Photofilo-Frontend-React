@@ -60,6 +60,35 @@ export class AppendElement {
     }
 
 
+
+    appendExistingTwo(grid_image_one, grid_image_two){
+        this.removingDefaultPlaceholder()
+        const div = document?.createElement("div");
+        div.className = "row tow__layout_site";
+        const [id1, id2] = [this.randomIdGenerator(10), this.randomIdGenerator(10)];
+        div.innerHTML = /* html */`
+        <div class="col-6 h-50 p-0">
+            <div class="p-2">
+                <div class="image-uploader-area" id="area-${id1}" >
+                <img class="uploaded_image" src=${grid_image_one} />
+                    <div data-id="${id1}" class="cancel-button ">&times;</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 h-50 p-0">
+            <div class="p-2">
+                <div class="image-uploader-area" id="area-${id2}">
+                    <img class="uploaded_image" src=${grid_image_two} />
+                    <div data-id="${id2}" class="cancel-button button-for-2-grid ">&times;</div>
+
+                </div>
+            </div>
+        </div>`;
+
+        this?.pageArea?.append(div)
+    }
+
+    //for edit section 
     appendOneGrid(image = mock_img) {
         this.removingDefaultPlaceholder();
         const id = this.randomIdGenerator(10);
@@ -67,7 +96,7 @@ export class AppendElement {
         div.className = "image-uploader-area one__layout__site";
         div.innerHTML =
             /* html */
-            `<div class="wrapper-1">
+        `<div class="wrapper-1">
             <div  class="wrapper-2">
                 <div id="area-${id}" class="upload-area">
                      <img class="placeholder_image" src=${image} alt="" />
@@ -81,14 +110,32 @@ export class AppendElement {
                      <div data-id="${id}" class="cancel-button d-none">&times;</div>
                  </div>
              </div>
-        </div>
-          
-          `;
+        </div>`;
         this.pageArea.appendChild(div);
     }
 
+    //for edit section 
+    appendExistingOne(image_url){
+
+        this.removingDefaultPlaceholder();
+        const id = this.randomIdGenerator(10);
+        const div = document?.createElement("div");
+
+        div.className = "image-uploader-area one__layout__site";
+        div.innerHTML =
+            /* html */
+        `<div class="wrapper-1">
+            <div  class="wrapper-2">
+                <div id="area-${id}" class="upload-area">
+                    <img class="uploaded_image" src=${image_url} />
+                     <div data-id="${id}" class="cancel-button ">&times;</div>
+                 </div>
+             </div>
+        </div>`;
+        this.pageArea.appendChild(div);
 
 
+    }
 
 
     appendingText() {
@@ -120,6 +167,53 @@ export class AppendElement {
         }
 
     }
+
+
+
+
+    //for edit section 
+    appendExistingText(texts){
+        this.removingDefaultPlaceholder();
+        const p = document?.createElement("p");
+        const id = this.randomIdGenerator(20)
+        p.className = `mb-0 page-text ${id} `;
+
+
+        const html = 
+        `<div id="div-${id}">  
+            <p class= mb-0 page-text" id="p-section-${id}"> ${texts} </p> 
+            <div data-id="${id}" class="textCancelButton text-danger">&times;</div>
+
+        </div>
+        `
+
+
+        p.innerHTML = html;
+        this.pageArea.appendChild(p);
+        console.log("text added");
+        this.writingBox.value = "";
+    }
+
+    handleRemoveTextSection(id){
+
+        const apiRoute = process.env.REACT_APP_API_TO;
+        const currentDiv = this.pageArea.querySelector(`#div-${id}`);
+        const currentP = this.pageArea.querySelector(`#p-section-${id}`);
+        const formData = new FormData();
+        formData.append('text', currentP.innerHTML);
+
+
+        axios.post(apiRoute + `project-text-remover`, formData)
+        .then(res => {
+            currentDiv.remove();
+            
+        });
+         
+    }
+
+
+
+
 
     randomIdGenerator(length){
         const word = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -294,6 +388,7 @@ export class AppendElement {
 
 
     handleRemoveImage(id) {
+
         const imageArea = this.pageArea.querySelector(`#area-${id}`);
         const uploadedImage = imageArea.querySelector(".uploaded_image");
         if (uploadedImage) {
