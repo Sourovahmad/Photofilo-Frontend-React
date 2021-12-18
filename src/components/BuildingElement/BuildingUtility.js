@@ -71,6 +71,8 @@ export class AppendElement {
             <div class="p-2">
                 <div class="image-uploader-area" id="area-${id1}" >
                 <img class="uploaded_image" src=${grid_image_one} />
+
+                <div data-id="${id1}" class="button-for-1-grid "> <i class="fas fa-edit"> </i> </div>
                     <div data-id="${id1}" class="cancel-button ">&times;</div>
                 </div>
             </div>
@@ -79,6 +81,9 @@ export class AppendElement {
             <div class="p-2">
                 <div class="image-uploader-area" id="area-${id2}">
                     <img class="uploaded_image" src=${grid_image_two} />
+
+                    <div data-id="${id2}" class="button-for-1-grid"> <i class="fas fa-edit"> </i> </div>
+
                     <div data-id="${id2}" class="cancel-button button-for-2-grid ">&times;</div>
 
                 </div>
@@ -128,6 +133,8 @@ export class AppendElement {
             <div  class="wrapper-2">
                 <div id="area-${id}" class="upload-area">
                     <img class="uploaded_image" src=${image_url} />
+
+                    <div data-id="${id}" class="button-for-1-grid "> <i class="fas fa-edit"> </i> </div>
                      <div data-id="${id}" class="cancel-button ">&times;</div>
                  </div>
              </div>
@@ -173,6 +180,7 @@ export class AppendElement {
 
     //for edit section 
     appendExistingText(texts){
+
         this.removingDefaultPlaceholder();
         const p = document?.createElement("p");
         const id = this.randomIdGenerator(20)
@@ -183,7 +191,6 @@ export class AppendElement {
         `<div id="div-${id}">  
             <p class= mb-0 page-text" id="p-section-${id}"> ${texts} </p> 
             <div data-id="${id}" class="textCancelButton text-danger">&times;</div>
-
         </div>
         `
 

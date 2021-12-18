@@ -16,8 +16,10 @@ const Create = ({editProject}) => {
     const [isTextBar, setIsTextBar] = useState(false);
     const [currentContents, setcurrentContents] = useState([]);
     const [iscurrentProject, setiscurrentProject] = useState(false);
+    const [currentChangedImage, setcurrentChangedImage] = useState('');
+    const [currentChangedImgFile, setcurrentChangedImgFile] = useState([]);
     const apiRoute = process.env.REACT_APP_API_TO;
-
+    
     useEffect(() => {
 
         const appender = new AppendElement();
@@ -35,6 +37,7 @@ const Create = ({editProject}) => {
             eventForUpload();
             handleRemoveImage();
             handleRemoveText();
+            handleImageEdit();
         });
 
         const eventForUpload = function () {
@@ -73,9 +76,16 @@ const Create = ({editProject}) => {
 
         const handleRemoveText =() =>{
             const allEditButtons = appender.pageId?.querySelectorAll(".textCancelButton");
-            console.log(allEditButtons);
             [...allEditButtons].forEach(button => {
                 button.onclick = () => appender.handleRemoveTextSection(button.dataset.id)
+            })
+        }
+
+
+        const handleImageEdit = () => {
+            const allGridEditButtons = appender.pageId?.querySelectorAll(".button-for-1-grid");
+            [...allGridEditButtons].forEach(button => {
+                button.onclick = () => editcalled(button.dataset.id)
             })
         }
     
@@ -84,12 +94,17 @@ const Create = ({editProject}) => {
         eventForUpload();
         handleRemoveImage();
         handleRemoveText();
+        handleImageEdit();
 
 
         //eslint-disable-next-line
     }, []);
 
 
+    function editcalled(id){
+        document.getElementById('page_id_Section').value = id;
+        document.getElementById('editModalCallHiddenButton').click();
+    }
   
 
 
@@ -165,6 +180,39 @@ const Create = ({editProject}) => {
             window.location.reload();
         }
     }
+    
+
+
+    function fileChangedCalled(e){
+        const file = e.target.files[0];
+        setcurrentChangedImgFile(file);
+        setcurrentChangedImage(URL.createObjectURL(file));
+       
+    }
+
+    function imageEditSaveHandle(){
+
+        const id =  document.getElementById('page_id_Section').value;
+        const areaSection = document.getElementById(`area-${id}`);
+        const image = areaSection.children[0];
+
+        const formData = new FormData();
+        formData.append('previous_image', image.src);
+        formData.append('new_image', currentChangedImgFile);
+
+
+        axios.post(apiRoute + `update-project-image`,formData )
+        .then(res => {
+            image.src = res.data.image_url;
+
+            document.getElementById('editModalCloseButton').click();
+            setcurrentChangedImage('');
+
+        })
+        .catch(error => console.log("image update error"));
+    }
+
+
 
 
     return (
@@ -190,7 +238,9 @@ const Create = ({editProject}) => {
                                         <label htmlFor="file-upload-1ddd" onClick={() => alert("please select an Grid")} className="theme-color">
                                             Browse
                                         </label>
-                                        <input type="file" name="" id="file-upload-1" className="d-none" />
+                                             <input type="file" name="" id="file-upload-1" className="d-none" />
+                  
+                                       
                                     </p>
                                 </div>
               
@@ -215,6 +265,46 @@ const Create = ({editProject}) => {
             </div>
         </section>
         <Footer />
+
+
+
+        {/* modal  */}
+        <div class="modal fade" id="imageEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Image</h5>
+                    <button type="button" class="btn-close" id="editModalCloseButton" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <input type="file" name="uploadedImage" id="edit_uplaoded_image" 
+                    onChange={(e) => fileChangedCalled(e)}
+                  accept="image/png, image/gif, image/jpeg, image/jpg" />
+                </div>
+
+                <input type="text" id="page_id_Section"  hidden />
+
+                <div className="imagePreviewSection">
+                <div style={{ width:'499px'}}>
+
+                    {
+                        currentChangedImage !== '' ? 
+                        <img src={currentChangedImage} alt="" style={{ width:'100%', height:'330px' }} srcset="" />
+                        : ''
+                    }
+                        
+                 </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onClick={()=> imageEditSaveHandle()} >Update </button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <button id="editModalCallHiddenButton" data-bs-toggle="modal" data-bs-target="#imageEditModal" hidden></button>
         </>
     );
 };
