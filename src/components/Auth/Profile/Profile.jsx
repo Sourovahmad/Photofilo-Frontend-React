@@ -5,12 +5,12 @@ import '../../../Style/Style.css';
 import Footer from '../Footer/Footer';
 import AllProjects from './AllProjects/AllProjects';
 
-const Profile = ({prfileData}) => {
+const Profile = () => {
     return (
         <div>
             <Navbar /> 
                 <TopAddImage></TopAddImage>
-                <AllProjects prfileData={prfileData}></AllProjects>
+                <AllProjects></AllProjects>
             <Footer />
         </div>
     );

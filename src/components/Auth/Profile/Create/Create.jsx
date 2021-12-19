@@ -8,13 +8,14 @@ import placeholder_image from "../../../../Images/image-uploader-thumb.svg";
 import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer/Footer";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Create = ({editProject}) => {
+
+    const navigate = useNavigate()
     
     const [isInsertMediaBar, setIsInsertMediaBar] = useState(null)
     const [isTextBar, setIsTextBar] = useState(false);
-    const [currentContents, setcurrentContents] = useState([]);
     const [iscurrentProject, setiscurrentProject] = useState(false);
     const [currentChangedImage, setcurrentChangedImage] = useState('');
     const [currentChangedImgFile, setcurrentChangedImgFile] = useState([]);
@@ -88,8 +89,6 @@ const Create = ({editProject}) => {
                 button.onclick = () => editcalled(button.dataset.id)
             })
         }
-    
-            
 
         eventForUpload();
         handleRemoveImage();
@@ -122,9 +121,8 @@ const Create = ({editProject}) => {
                 window.sessionStorage.removeItem('grid_one_project_id');
             }
             alert("Project Publish Successfully")
-            window.location.reload();
-            sessionStorage.removeItem('current_project_id'); 
             setiscurrentProject(false)
+            navigate('/profile', { replace: true });
         });
     }
 
@@ -136,7 +134,7 @@ const Create = ({editProject}) => {
            if(iscurrentProject === true){
                alert("Complete Your Current Project First");
            }else{
-
+            window.sessionStorage.setItem('current_project_id', editProjectId);
             axios.get(apiRoute + `project-content/${editProjectId}`)
             .then(res => {
                 const editContents = res.data.contents;
@@ -160,7 +158,8 @@ const Create = ({editProject}) => {
 
            }
        }
-       
+
+       //eslint-disable-next-line
     }, []);
 
 
@@ -177,7 +176,7 @@ const Create = ({editProject}) => {
             }
 
             alert('Project Saved As Draft');
-            window.location.reload();
+            navigate('/profile', { replace: true });
         }
     }
     
@@ -203,8 +202,8 @@ const Create = ({editProject}) => {
 
         axios.post(apiRoute + `update-project-image`,formData )
         .then(res => {
-            image.src = res.data.image_url;
 
+            image.src = res.data.image_url;
             document.getElementById('editModalCloseButton').click();
             setcurrentChangedImage('');
 
@@ -255,9 +254,14 @@ const Create = ({editProject}) => {
                     </div>
                     <div className="button_wrapper">
                        
-                            <button className="btn btn-lg theme-btn rounded w-100 p-2" onClick={()=>projectPublisher()}> Publish </button>
+                       {
+                           editProject === true ? 
+                           <button className="btn btn-lg theme-btn rounded w-100 p-2" onClick={()=>projectPublisher()}> Update </button>
+                           :
+                           <button className="btn btn-lg theme-btn rounded w-100 p-2" onClick={()=>projectPublisher()}> Publish </button>
+                       }
 
-                            <button className="btn btn-danger rounded w-100 p-2 mt-4" onClick={()=>projectDrafter()}> Add To Draft </button>
+                        <button className="btn btn-danger rounded w-100 p-2 mt-4" onClick={()=>projectDrafter()}> Add To Draft </button>
                    
                        
                     </div>

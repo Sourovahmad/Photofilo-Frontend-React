@@ -10,30 +10,32 @@ const HomeGallery = ({projects}) => {
 
 
 return (
-        <div id='home_gallery_area'>
-            <div className='container'>
-                
 
+    <>  
+        <div id='gallery_area'>
+            <div className='container'>
+             
                 <div className='row'>
                     {
                         projects.map(project => 
-                            <div className='col-md-3 col-sm-12'>
-                                <Link to={`/project/${project.id}`} className='gallery'>
-                                    <div className='single_g'>
-                                        <img src={project.thumbnail} className="img-fluid" alt=''/>
-
-                                        <div className='hidden'>
-                                            <h3>{project.title}</h3>
-                                            <p></p>
-                                        </div>
-                                    </div>
-                                </Link>
+                            <div className="col-md-3 col-sm-12"> 
+                            <Link to={`/project/${project.id}`} style={{ margin:'15px', textDecoration:"none" }}> 
+                                <div className='single_g'>
+                                    <img src={project.thumbnail} className="img-fluid" alt="" />
+                                    <h3 style={{ margin:'0',fontSize:'16px'  }}>{project.title}</h3>
+                                </div>
+                            </Link>
                             </div>
                         )
                     }
                 </div>
             </div>
         </div>
+
+
+        </>
+
+
     );
 };
 

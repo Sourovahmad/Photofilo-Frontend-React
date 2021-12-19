@@ -1,13 +1,42 @@
 
 import './Allprojects.css';
 import profile from '../../../../Images/taha/84f03913-87eb-4488-a72e-c1f4061ac16c.jpg'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ProfileProject from '../../ProfileProject/ProfileProject';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 
-const AllProjects = ({prfileData}) => {
- 
-console.log(prfileData);
+const AllProjects = () => {
+    
+    const [prfileData, setPrfileData] = useState([]);
+    const apiRoute = process.env.REACT_APP_API_TO;
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        
+        const sessionToken = window.sessionStorage.getItem('token');
+        if(sessionToken !== undefined){
+            const config = {
+                headers: { Authorization: `Bearer ${sessionToken}`  }
+            };
+            axios.get(apiRoute + "checkUser", config)
+            .then(res =>{
+                setPrfileData(res.data.user.projects.reverse());
+            })
+            .catch(error =>{
+                console.log(error);
+            });
+    
+    
+        }else{
+            navigate('/login', { replace: true });
+        }
+
+
+
+    }, [])
     return (
     <div id='allProject_area'>
             <div className="container">

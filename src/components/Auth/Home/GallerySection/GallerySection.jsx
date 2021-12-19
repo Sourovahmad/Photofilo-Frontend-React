@@ -43,7 +43,7 @@ const GallerySection = () => {
 
     return (
         <>
-            <div id='gallery_area'>
+        <div id='gallery_area'>
             <div className='container'>
                 <div className='category'>
                     <ul>
@@ -56,9 +56,10 @@ const GallerySection = () => {
                     </ul>  
                 </div>
 
-                <div className='d-md-flex d-lg-flex flex-md-wrap flex-lg-wrap gallery'>
+                <div className='row gallery'>
                     {
                         gellaries.map(gallery => 
+                            <div className="col-md-3 col-sm-12">
                             <Link to={`project/${gallery.id}`} style={{ margin:'15px' }}> 
                                 <div className='single_g'>
                                     <img src={gallery.thumbnail} className="img-fluid" alt="" />
@@ -66,6 +67,7 @@ const GallerySection = () => {
                                     <p> <Link to={`/freelancer-profile/${gallery.user_id}`}> {gallery.user.name}  </Link> </p>
                                 </div>
                             </Link>
+                            </div>
                         )
                     }
                 </div>

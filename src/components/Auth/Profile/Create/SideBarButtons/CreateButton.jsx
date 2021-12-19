@@ -9,7 +9,7 @@ const CreateButton = () => {
   const sessionToken = window.sessionStorage.getItem('token');
   const apiRoute = process.env.REACT_APP_API_TO;
   const config = {
-    headers: { Authorization: `Bearer ${2}`  }
+    headers: { Authorization: `Bearer ${sessionToken}`  }
   };
 
     // ALl States 
@@ -27,21 +27,31 @@ const CreateButton = () => {
       setCategories(res.data.reverse());
     });
 
-    const currentProjectId = window.sessionStorage.getItem('current_project_id');
-    if( currentProjectId !== null){
+    const pathname = window.location.pathname;
 
-      setCurrentProject(true);
+    if(pathname === '/create'){
+       window.sessionStorage.removeItem('current_project_id');
+    }else{
+      const currentUpdateProjectId = window.sessionStorage.getItem('current_project_id');
+      if( currentUpdateProjectId !== null){
 
-      axios.get(apiRoute + `project/${currentProjectId}`, config)
-      .then(res => {
-        setprojecTitle(res.data.project.title);
-        setSelectedCategory(res.data.categories);
-        setSelectedThumb(res.data.project.thumbnail);
-      })
-      .catch(error=> {
-        console.log(error);
-      })
+        setCurrentProject(true);
+  
+        axios.get(apiRoute + `project/${currentUpdateProjectId}`, config)
+        .then(res => {
+          setprojecTitle(res.data.project.title);
+          setSelectedCategory(res.data.categories);
+          setSelectedThumb(res.data.project.thumbnail);
+        })
+        .catch(error=> {
+          console.log(error);
+        })
+      }
+
     }
+
+
+
  // eslint-disable-next-line
   }, []);
 
@@ -110,9 +120,7 @@ const CreateButton = () => {
         alert("Project Created Successfully");
         setIsFormActive(false);
         setCurrentProject(true);
-        window.location.reload();
-      }
-        )
+      })
       .catch(error => console.log(error));
     }
   

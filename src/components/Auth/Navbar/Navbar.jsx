@@ -63,7 +63,7 @@ const Navbar = () => {
                         {/* Flex end element for Navbar */}
                         <ul className="navbar-nav end-element">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">
+                                <Link className="nav-link" to="/profile">
                                     <div className="profile">
                                         <img src={profile_image} alt="" />
                                     </div>
