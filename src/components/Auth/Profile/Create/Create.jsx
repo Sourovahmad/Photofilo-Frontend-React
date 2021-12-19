@@ -39,6 +39,7 @@ const Create = ({editProject}) => {
             handleRemoveImage();
             handleRemoveText();
             handleImageEdit();
+            editText();
         });
 
         const eventForUpload = function () {
@@ -90,10 +91,23 @@ const Create = ({editProject}) => {
             })
         }
 
+
+        const editText =  () => {
+
+            const alltextEditButtons = appender.pageId?.querySelectorAll(".textEditButton");
+            [...alltextEditButtons].forEach(button => {
+                button.onclick = () => editcalledText(button.dataset.id)
+            })
+        }
+
+
+
+
         eventForUpload();
         handleRemoveImage();
         handleRemoveText();
         handleImageEdit();
+        editText();
 
 
         //eslint-disable-next-line
@@ -103,6 +117,35 @@ const Create = ({editProject}) => {
     function editcalled(id){
         document.getElementById('page_id_Section').value = id;
         document.getElementById('editModalCallHiddenButton').click();
+    }
+
+
+    function editcalledText(content_id){
+
+        document.getElementById('text_page_id_Section').value = content_id;
+        document.getElementById('texteditModalCallHiddenButton').click();
+    }
+
+    function textEditSaveHandle(){
+      const content_id = document.getElementById('text_page_id_Section').value;
+      const newText = document.getElementById('editTextAreaInput').value;
+
+      const pSection = document.getElementById(`p-section-${content_id}`);
+
+
+
+      const formData = new FormData();
+      formData.append('content_id', content_id);
+      formData.append('new_text', newText);
+
+
+      axios.post(apiRoute + 'text-content-update', formData)
+      .then(res => {
+        pSection.innerHTML = res.data.text;
+        document.getElementById('texteditModalCloseButton').click();
+
+      });
+
     }
   
 
@@ -150,7 +193,7 @@ const Create = ({editProject}) => {
                         project.grid_image_one !== null ? appender.appendExistingTwo(project.grid_image_one, project.grid_image_two) : ''
                     }
                     {
-                        project.text !== null ? appender.appendExistingText(project.text) : ''
+                        project.text !== null ? appender.appendExistingText(project.text, project.id) : ''
                     }
                     </>
                 })
@@ -211,6 +254,9 @@ const Create = ({editProject}) => {
         })
         .catch(error => console.log("image update error"));
     }
+
+
+ 
 
 
         function projectUpdater(){
@@ -321,7 +367,34 @@ const Create = ({editProject}) => {
             </div>
         </div>
 
+
+
+
+
+               {/* modal text edit  */}
+               <div class="modal fade" id="textEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Text</h5>
+                    <button type="button" class="btn-close" id="texteditModalCloseButton" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                <textarea placeholder="Enter Your Text Here..." className="form-control box__input" id="editTextAreaInput" cols="30" rows="2"></textarea>
+                <input type="text" id="text_page_id_Section"  hidden />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onClick={()=> textEditSaveHandle()} >Update </button>
+                </div>
+                </div>
+            </div>
+        </div>
+
         <button id="editModalCallHiddenButton" data-bs-toggle="modal" data-bs-target="#imageEditModal" hidden></button>
+        <button id="texteditModalCallHiddenButton" data-bs-toggle="modal" data-bs-target="#textEditModal" hidden></button>
         </>
     );
 };

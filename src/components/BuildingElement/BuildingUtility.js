@@ -134,6 +134,7 @@ export class AppendElement {
                 <div id="area-${id}" class="upload-area">
                     <img class="uploaded_image" src=${image_url} />
 
+ 
                     <div data-id="${id}" class="button-for-1-grid "> <i class="fas fa-edit"> </i> </div>
                      <div data-id="${id}" class="cancel-button ">&times;</div>
                  </div>
@@ -179,18 +180,21 @@ export class AppendElement {
 
 
     //for edit section 
-    appendExistingText(texts){
+    appendExistingText(texts,content_id){
 
         this.removingDefaultPlaceholder();
         const p = document?.createElement("p");
-        const id = this.randomIdGenerator(20)
-        p.className = `mb-0 page-text ${id} `;
+        p.className = `mb-0 page-text ${content_id} `;
 
 
         const html = 
-        `<div id="div-${id}">  
-            <p class= mb-0 page-text" id="p-section-${id}"> ${texts} </p> 
-            <div data-id="${id}" class="textCancelButton text-danger">&times;</div>
+        `<div id="div-${content_id}">  
+            <p class= mb-0 page-text" id="p-section-${content_id}"> ${texts} </p> 
+            <div class="d-flex align-items-center">
+                    <div data-id="${content_id}" class="textEditButton text-danger m-4"> <i class="fas fa-edit"></i></div>
+                    <div data-id="${content_id}" class="textCancelButton text-danger">&times;</div> 
+            </div>
+
         </div>
         `
 
@@ -206,8 +210,10 @@ export class AppendElement {
         const apiRoute = process.env.REACT_APP_API_TO;
         const currentDiv = this.pageArea.querySelector(`#div-${id}`);
         const currentP = this.pageArea.querySelector(`#p-section-${id}`);
+
+        
         const formData = new FormData();
-        formData.append('text', currentP.innerHTML);
+        formData.append('content_id', id);
 
 
         axios.post(apiRoute + `project-text-remover`, formData)
