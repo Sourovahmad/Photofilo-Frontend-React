@@ -25,30 +25,35 @@ const CreateButton = () => {
   useEffect(() => {
     axios.get(apiRoute + "categories").then((res) => {
       setCategories(res.data.reverse());
-    });
 
-    const pathname = window.location.pathname;
-
-    if(pathname === '/create'){
-       window.sessionStorage.removeItem('current_project_id');
-    }else{
-      const currentUpdateProjectId = window.sessionStorage.getItem('current_project_id');
-      if( currentUpdateProjectId !== null){
-
-        setCurrentProject(true);
+      const pathname = window.location.pathname;
+      if(pathname === '/create'){
+        console.log(pathname);
+         window.sessionStorage.removeItem('current_project_id');
+      }else{
+        
+        const currentUpdateProjectId = window.sessionStorage.getItem('current_project_id');
+        if( currentUpdateProjectId !== null){
   
-        axios.get(apiRoute + `project/${currentUpdateProjectId}`, config)
-        .then(res => {
-          setprojecTitle(res.data.project.title);
-          setSelectedCategory(res.data.categories);
-          setSelectedThumb(res.data.project.thumbnail);
-        })
-        .catch(error=> {
-          console.log(error);
-        })
+          setCurrentProject(true);
+    
+          axios.get(apiRoute + `project/${currentUpdateProjectId}`, config)
+          .then(res => {
+            setprojecTitle(res.data.project.title);
+            setSelectedCategory(res.data.categories);
+            setSelectedThumb(res.data.project.thumbnail);
+            setSelectFullImage(res.data.project.fullimage);
+          })
+          .catch(error=> {
+            console.log(error);
+          })
+        }
+  
       }
 
-    }
+    });
+
+ 
 
 
 
@@ -139,7 +144,8 @@ const CreateButton = () => {
       const formData = {
         title: projecTitle,
         categories: selectedCategories,
-        thumbnail:selectedThumb
+        thumbnail:selectedThumb,
+        fullimage:selectFullImage
       }
       const currentProjectId = window.sessionStorage.getItem('current_project_id');
 

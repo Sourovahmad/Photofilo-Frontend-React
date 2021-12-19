@@ -137,6 +137,7 @@ const Create = ({editProject}) => {
             window.sessionStorage.setItem('current_project_id', editProjectId);
             axios.get(apiRoute + `project-content/${editProjectId}`)
             .then(res => {
+
                 const editContents = res.data.contents;
                 const appender =  new AppendElement();
 
@@ -212,6 +213,18 @@ const Create = ({editProject}) => {
     }
 
 
+        function projectUpdater(){
+            window.sessionStorage.removeItem('current_project_id');
+            const gridCurrentId = window.sessionStorage.getItem('grid_one_project_id');
+            if(gridCurrentId !== null){
+                window.sessionStorage.removeItem('grid_one_project_id');
+            }
+            alert("Project Update Successfully")
+            setiscurrentProject(false)
+            navigate('/profile', { replace: true });
+        }
+
+
 
 
     return (
@@ -256,7 +269,7 @@ const Create = ({editProject}) => {
                        
                        {
                            editProject === true ? 
-                           <button className="btn btn-lg theme-btn rounded w-100 p-2" onClick={()=>projectPublisher()}> Update </button>
+                           <button className="btn btn-lg theme-btn rounded w-100 p-2" onClick={()=>projectUpdater()}> Update </button>
                            :
                            <button className="btn btn-lg theme-btn rounded w-100 p-2" onClick={()=>projectPublisher()}> Publish </button>
                        }
