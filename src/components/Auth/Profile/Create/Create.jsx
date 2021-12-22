@@ -160,9 +160,17 @@ const Create = ({editProject}) => {
             
             window.sessionStorage.removeItem('current_project_id');
             const gridCurrentId = window.sessionStorage.getItem('grid_one_project_id');
+            const gridTwoCurrentId = window.sessionStorage.getItem('grid_two_project_id');
             if(gridCurrentId !== null){
                 window.sessionStorage.removeItem('grid_one_project_id');
             }
+            if(gridTwoCurrentId !== null){
+                window.sessionStorage.removeItem('grid_two_project_id');
+            }
+
+
+
+
             alert("Project Publish Successfully")
             setiscurrentProject(false)
             navigate('/profile', { replace: true });
@@ -215,10 +223,13 @@ const Create = ({editProject}) => {
             sessionStorage.removeItem('current_project_id');
 
             const gridCurrentId = window.sessionStorage.getItem('grid_one_project_id');
+            const gridTwoCurrentId = window.sessionStorage.getItem('grid_two_project_id');
             if(gridCurrentId !== null){
                 window.sessionStorage.removeItem('grid_one_project_id');
             }
-
+            if(gridTwoCurrentId !== null){
+                window.sessionStorage.removeItem('grid_two_project_id');
+            }
             alert('Project Saved As Draft');
             navigate('/profile', { replace: true });
         }

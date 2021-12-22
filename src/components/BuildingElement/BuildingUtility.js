@@ -19,6 +19,16 @@ export class AppendElement {
 
     appendTwoGrid(image1=mock_img, image2=mock_img) {
 
+
+        const gridCurrentId = window.sessionStorage.getItem('grid_one_project_id');
+        const gridTwoCurrentId = window.sessionStorage.getItem('grid_two_project_id');
+        if(gridCurrentId !== null){
+            window.sessionStorage.removeItem('grid_one_project_id');
+        }
+        if(gridTwoCurrentId !== null){
+            window.sessionStorage.removeItem('grid_two_project_id');
+        }
+
         this.removingDefaultPlaceholder()
         const div = document?.createElement("div");
         div.className = "row tow__layout_site";
@@ -62,6 +72,17 @@ export class AppendElement {
 
 
     appendExistingTwo(grid_image_one, grid_image_two){
+
+        const gridCurrentId = window.sessionStorage.getItem('grid_one_project_id');
+        const gridTwoCurrentId = window.sessionStorage.getItem('grid_two_project_id');
+        if(gridCurrentId !== null){
+            window.sessionStorage.removeItem('grid_one_project_id');
+        }
+        if(gridTwoCurrentId !== null){
+            window.sessionStorage.removeItem('grid_two_project_id');
+        }
+
+
         this.removingDefaultPlaceholder()
         const div = document?.createElement("div");
         div.className = "row tow__layout_site";
@@ -318,12 +339,26 @@ export class AppendElement {
                             formData.append("file", files);
                             formData.append("type", 'grid_image_one');
                             formData.append("project_id", currentProjectId);
-    
+
+                            let gridTwoProjectId = sessionStorage.getItem('grid_two_project_id');
+
+                            if(gridTwoProjectId !== null){
+                                formData.append("grid_two_project_id", parseInt(gridTwoProjectId));
+                            }else{
+                                formData.append("grid_two_project_id", 'noId');
+                            }
+
+                            
                             const image = document.createElement("img");
                             axios.post(apiRoute + "project-content-upload", formData)
                             .then(res => {
+                                console.log(res);
                                 image.src = res.data.imageName;
-                                window.sessionStorage.setItem('grid_one_project_id', res.data.grid_one_project_id);
+
+                                if(res.data.grid_one_project_id !== undefined){
+                                    window.sessionStorage.setItem('grid_one_project_id', res.data.grid_one_project_id);
+                                }
+
                             })
                             .catch(error => alert("file upload Error"))
 
@@ -371,12 +406,25 @@ export class AppendElement {
                             formData.append("type", 'grid_image_two');
                             formData.append("project_id", currentProjectId);
 
-                            const firstGridId = window.sessionStorage.getItem('grid_one_project_id');
-                            formData.append("grid_one_project_id", firstGridId);
+                            let firstGridId = window.sessionStorage.getItem('grid_one_project_id');
+
+                            if(firstGridId !== null){
+                                formData.append("grid_one_project_id", parseInt(firstGridId));
+                            }else{
+                                formData.append("grid_one_project_id", 'noId');
+                            }
     
                             const image = document.createElement("img");
                             axios.post(apiRoute + "project-content-upload", formData)
-                            .then(res => image.src = res.data.imageName)
+                            // .then(res => console.log(res))
+
+                            .then(res => {
+                                image.src = res.data.imageName;
+                                if(res.data.grid_two_project_id !== undefined){
+                                    sessionStorage.setItem('grid_two_project_id', res.data.grid_two_project_id)
+                                }
+
+                            })
                             .catch(error => alert("file upload Error"))
 
                             image.className = "uploaded_image";

@@ -105,11 +105,11 @@ const CreateButton = () => {
   function projectCreateHandle(){
 
     if(projecTitle === '' ){
-        alert("Check Write A Title")
+        alert("Title is Required")
     }else if(selectedCategories.length <= 0){
-        alert("Please Select A Category");
+        alert("Category is Required");
     }else if(selectedThumb === ''){
-        alert("Please Chose A Thumbnail")
+        alert("Thumbnail is Required")
     }else{
       const formData = {
         title: projecTitle,
