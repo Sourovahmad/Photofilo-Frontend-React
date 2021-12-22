@@ -40,6 +40,7 @@ const Create = ({editProject}) => {
             handleRemoveText();
             handleImageEdit();
             editText();
+            htmlRemover();
         });
 
         const eventForUpload = function () {
@@ -101,6 +102,14 @@ const Create = ({editProject}) => {
         }
 
 
+        const htmlRemover = () =>{
+            const alltextEditButtons = appender.pageId?.querySelectorAll(".html-cancel-button");
+            [...alltextEditButtons].forEach(button => {
+                button.onclick = () => appender.htmlRemover(button.dataset.id)
+            })
+        }
+
+
 
 
         eventForUpload();
@@ -108,6 +117,7 @@ const Create = ({editProject}) => {
         handleRemoveText();
         handleImageEdit();
         editText();
+        htmlRemover();
 
 
         //eslint-disable-next-line

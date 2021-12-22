@@ -46,6 +46,7 @@ export class AppendElement {
                         <input  type="file" name="" id="${id1}" class="d-none uploader-input-grid_1" />
                     </p>
                     <div data-id="${id1}" class="cancel-button d-none">&times;</div>
+                    <div data-id="${id1}" class="html-cancel-button ">&times;</div>
                 </div>
             </div>
         </div>
@@ -61,7 +62,7 @@ export class AppendElement {
                         <input type="file" name="" id="${id2}" class="d-none uploader-input-grid_2" />
                     </p>
                     <div data-id="${id2}" class="cancel-button button-for-2-grid d-none">&times;</div>
-
+                    <div data-id="${id2}" class="html-cancel-button ">&times;</div>
                 </div>
             </div>
         </div>`;
@@ -95,6 +96,7 @@ export class AppendElement {
 
                 <div data-id="${id1}" class="button-for-1-grid "> <i class="fas fa-edit"> </i> </div>
                     <div data-id="${id1}" class="cancel-button ">&times;</div>
+
                 </div>
             </div>
         </div>
@@ -134,6 +136,7 @@ export class AppendElement {
                          <input type="file" name="" id="file-upload-${id}" class="d-none uploader-input" />
                      </p>
                      <div data-id="${id}" class="cancel-button d-none">&times;</div>
+                     <div data-id="${id}" class="html-cancel-button ">&times;</div>
                  </div>
              </div>
         </div>`;
@@ -154,10 +157,9 @@ export class AppendElement {
             <div  class="wrapper-2">
                 <div id="area-${id}" class="upload-area">
                     <img class="uploaded_image" src=${image_url} />
-
- 
                     <div data-id="${id}" class="button-for-1-grid "> <i class="fas fa-edit"> </i> </div>
-                     <div data-id="${id}" class="cancel-button ">&times;</div>
+                    <div data-id="${id}" class="cancel-button ">&times;</div>
+
                  </div>
              </div>
         </div>`;
@@ -470,7 +472,10 @@ export class AppendElement {
         }
     }
 
-
+    htmlRemover(id){
+        const imageArea = this.pageArea.querySelector(`#area-${id}`);
+        imageArea.parentElement?.parentNode?.parentNode?.remove();
+    }
     
 
 }
